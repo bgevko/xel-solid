@@ -54,4 +54,33 @@ describe("Xel source coverage", () => {
     assert.equal(componentsTs.includes("x-xyzlinearsliders"), false);
     assert.equal(componentsTs.includes("x-xyzplanarsliders"), false);
   });
+
+  test("binds every custom event emitted by public Xel elements and dialog augmentation", () => {
+    const eventTs = read("src/events.ts");
+    const xelJs = readXel("xel.js");
+    const publicImportPaths = [...xelJs.matchAll(/export \{default as X[A-Za-z0-9]+Element\} from "\.\/elements\/([^"]+)\.js";/g)]
+      .filter(([, importPath]) => importPath.startsWith("x-"))
+      .map(([, importPath]) => `elements/${importPath}.js`);
+
+    const emittedEvents = new Set<string>();
+
+    for (const importPath of [...publicImportPaths, "elements/dialog.js"]) {
+      const source = readXel(importPath);
+
+      for (const [, eventName] of source.matchAll(/new CustomEvent\("([^"]+)"/g)) {
+        emittedEvents.add(eventName);
+      }
+    }
+
+    const intentionallyForwardedBySolid = new Set(["click", "pointerdown", "keydown"]);
+    const mappedEvents = new Set(
+      [...eventTs.matchAll(/: "([^"]+)"/g)].map(([, eventName]) => eventName),
+    );
+
+    for (const eventName of emittedEvents) {
+      if (!intentionallyForwardedBySolid.has(eventName)) {
+        assert.equal(mappedEvents.has(eventName), true, eventName);
+      }
+    }
+  });
 });

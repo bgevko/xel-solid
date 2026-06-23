@@ -1,23 +1,37 @@
 import type { XelComponentProps } from "./types";
 
-type EventPropName =
-  | "onBeforeToggle"
-  | "onChange"
-  | "onClose"
-  | "onOpen"
-  | "onRemove"
-  | "onToggle";
-
-const eventPropToEventName = {
+export const xelEventPropToEventName = {
+  onAdd: "add",
   onBeforeToggle: "beforetoggle",
+  onBeforeValidate: "beforevalidate",
+  onButtonClick: "buttonclick",
   onChange: "change",
+  onChangeEnd: "changeend",
+  onChangeStart: "changestart",
   onClose: "close",
+  onCollapse: "collapse",
+  onDecrement: "decrement",
+  onDecrementEnd: "decrementend",
+  onDecrementStart: "decrementstart",
+  onExpand: "expand",
+  onIncrement: "increment",
+  onIncrementEnd: "incrementend",
+  onIncrementStart: "incrementstart",
+  onInput: "input",
   onOpen: "open",
+  onPin: "pin",
+  onRearrange: "rearrange",
   onRemove: "remove",
+  onSelect: "select",
+  onTextInputModeEnd: "textinputmodeend",
+  onTextInputModeStart: "textinputmodestart",
   onToggle: "toggle",
-} as const satisfies Record<EventPropName, string>;
+  onUserClose: "userclose",
+} as const;
 
-export const eventPropNames = Object.keys(eventPropToEventName) as EventPropName[];
+export type EventPropName = keyof typeof xelEventPropToEventName;
+
+export const eventPropNames = Object.keys(xelEventPropToEventName) as EventPropName[];
 
 export function bindXelEvents<TElement extends HTMLElement>(
   element: TElement,
@@ -32,7 +46,7 @@ export function bindXelEvents<TElement extends HTMLElement>(
       continue;
     }
 
-    const eventName = eventPropToEventName[propName];
+    const eventName = xelEventPropToEventName[propName];
     const listener = (event: Event) => handler(event as Parameters<typeof handler>[0]);
 
     element.addEventListener(eventName, listener);

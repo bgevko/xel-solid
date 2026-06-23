@@ -44,3 +44,10 @@ test("assigns rich values through the properties prop", async ({ page }) => {
   await expect(page.locator("x-input#property-input")).toHaveJSProperty("value", "changed");
 });
 
+test("binds the broader Xel custom event prop set", async ({ page }) => {
+  await page.goto("/tests/fixtures/wrapper-app.html");
+
+  await page.locator("x-accordion#extra-event-accordion").dispatchEvent("expand");
+  await page.locator("x-accordion#extra-event-accordion").dispatchEvent("collapse");
+  await expect(page.locator("#extra-event-count")).toHaveText("2");
+});
