@@ -44,6 +44,12 @@ test("assigns rich values through the properties prop", async ({ page }) => {
   await expect(page.locator("x-input#property-input")).toHaveJSProperty("value", "changed");
 });
 
+test("assigns rich values through the prop alias", async ({ page }) => {
+  await page.goto("/tests/fixtures/wrapper-app.html");
+
+  await expect(page.locator("x-input#prop-input")).toHaveJSProperty("value", "from-prop");
+});
+
 test("binds the broader Xel custom event prop set", async ({ page }) => {
   await page.goto("/tests/fixtures/wrapper-app.html");
 

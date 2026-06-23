@@ -30,7 +30,7 @@ const booleanPropNames = [
 
 function assignProperties<TElement extends HTMLElement>(
   element: TElement,
-  properties: XelComponentProps<TElement>["properties"],
+  properties: Record<string, unknown> | undefined,
 ) {
   if (!properties) {
     return;
@@ -62,13 +62,13 @@ export function createXelComponent<TElement extends HTMLElement>(localName: stri
     let element: TElement | undefined;
     const [local, eventProps, booleanProps, others] = splitProps(
       props,
-      ["children", "properties", "ref"],
+      ["children", "prop", "properties", "ref"],
       eventPropNames,
       booleanPropNames,
     );
 
     createRenderEffect(() => {
-      const properties = local.properties;
+      const properties = { ...local.properties, ...local.prop };
       const currentBooleanProps = { ...booleanProps };
 
       if (element) {
@@ -90,6 +90,7 @@ export function createXelComponent<TElement extends HTMLElement>(localName: stri
             }
 
             assignProperties(node, local.properties);
+            assignProperties(node, local.prop);
             assignBooleanAttributes(node, booleanProps);
 
             const cleanup = bindXelEvents(node, eventProps);

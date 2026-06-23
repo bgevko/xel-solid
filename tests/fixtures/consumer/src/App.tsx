@@ -24,6 +24,10 @@ export function App() {
         <XLabel>Consumer build</XLabel>
       </XButton>
 
+      <XLabel prop={{ value: "consumer-label" } as Partial<HTMLElement> & { value: string }}>
+        Property alias
+      </XLabel>
+
       <x-button togglable onToggle={(event) => console.log(event.currentTarget.localName)}>
         <x-label>Raw consumer element</x-label>
       </x-button>

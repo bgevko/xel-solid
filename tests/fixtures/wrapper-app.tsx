@@ -60,6 +60,11 @@ function App() {
         properties={{ value: propertyValue() } as Partial<HTMLElement> & { value: string }}
       />
 
+      <XInput
+        id="prop-input"
+        prop={{ value: "from-prop" } as Partial<HTMLElement> & { value: string }}
+      />
+
       <button id="change-property" onClick={() => setPropertyValue("changed")}>
         change property
       </button>

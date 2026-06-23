@@ -41,15 +41,17 @@ export function ToggleButton() {
 
 ## Rich Properties
 
-Use `properties` when a custom element property needs an object, array, or non-attribute value:
+Use `prop` when a custom element property needs an object, array, or non-attribute value:
 
 ```tsx
 import { XInput } from "xel-solid";
 
 export function NamedInput() {
-  return <XInput properties={{ value: "Ada" }} />;
+  return <XInput prop={{ value: "Ada" }} />;
 }
 ```
+
+The older `properties` prop is also supported for compatibility.
 
 ## Raw Custom Elements
 

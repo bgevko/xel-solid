@@ -79,11 +79,16 @@ export type XelCommonProps = {
   value?: string | number | null;
 };
 
+export type XelPropertyProps<TElement extends HTMLElement = HTMLElement> = {
+  prop?: Partial<TElement> & Record<string, unknown>;
+  properties?: Partial<TElement> & Record<string, unknown>;
+};
+
 export type XelComponentProps<TElement extends HTMLElement = HTMLElement> =
   Omit<JSX.HTMLAttributes<TElement>, keyof XelBooleanProps | keyof XelCommonProps> &
     XelBooleanProps &
     XelCommonProps &
-    XelEventProps<TElement> & {
+    XelEventProps<TElement> &
+    XelPropertyProps<TElement> & {
       children?: JSX.Element;
-      properties?: Partial<TElement> & Record<string, unknown>;
     };
