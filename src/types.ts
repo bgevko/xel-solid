@@ -37,4 +37,5 @@ export type XelComponentProps<TElement extends HTMLElement = HTMLElement> =
     XelBooleanProps &
     XelEventProps<TElement> & {
       children?: JSX.Element;
+      properties?: Partial<TElement> & Record<string, unknown>;
     };
