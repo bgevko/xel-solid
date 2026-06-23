@@ -4,8 +4,26 @@
   "description": "SolidJS bindings for Xel Web Components.",
   "type": "module",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgevko/xel-solid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bgevko/xel-solid/issues"
+  },
+  "homepage": "https://github.com/bgevko/xel-solid#readme",
+  "keywords": [
+    "xel",
+    "solid",
+    "solidjs",
+    "web-components",
+    "custom-elements",
+    "ui"
+  ],
   "sideEffects": [
-    "./dist/register.js"
+    "./dist/register.js",
+    "./dist/components.js"
   ],
   "files": [
     "dist",
@@ -25,15 +43,21 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "prepack": "npm run build"
+    "test": "bun run ts && bun run test:runtime",
+    "test:runtime": "playwright test",
+    "ts": "tsc -p tsconfig.json --noEmit",
+    "prepack": "bun run build"
   },
   "peerDependencies": {
     "solid-js": "^1.9.0",
     "xel": "*"
   },
   "devDependencies": {
-    "typescript": "^6.0.0"
+    "@playwright/test": "^1.61.1",
+    "solid-js": "^1.9.0",
+    "typescript": "^6.0.0",
+    "vite": "^8.1.0",
+    "vite-plugin-solid": "^2.11.12",
+    "xel": "file:../xel"
   }
 }
-
