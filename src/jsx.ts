@@ -1,58 +1,105 @@
 import type { JSX } from "solid-js";
 import type { XelComponentProps } from "./types";
+import type {
+  XAccordionElement,
+  XAvatarElement,
+  XBackdropElement,
+  XBoxElement,
+  XButtonElement,
+  XButtonsElement,
+  XCardElement,
+  XCheckboxElement,
+  XColorInputElement,
+  XColorPickerElement,
+  XColorSelectElement,
+  XContextMenuElement,
+  XDocTabElement,
+  XDocTabsElement,
+  XDrawerElement,
+  XIconElement,
+  XInputElement,
+  XLabelElement,
+  XMenuElement,
+  XMenubarElement,
+  XMenuItemElement,
+  XMessageElement,
+  XNavElement,
+  XNavItemElement,
+  XNotificationElement,
+  XNumberInputElement,
+  XPagerElement,
+  XPopoverElement,
+  XProgressbarElement,
+  XRadioElement,
+  XRadiosElement,
+  XSelectElement,
+  XShortcutElement,
+  XSliderElement,
+  XStepperElement,
+  XSwatchElement,
+  XSwitchElement,
+  XTabElement,
+  XTabsElement,
+  XTagElement,
+  XTagsElement,
+  XTagsInputElement,
+  XTextEditorElement,
+  XThrobberElement,
+  XTitlebarElement,
+  XTooltipElement,
+} from "./xel";
 
 declare module "solid-js" {
   namespace JSX {
     interface IntrinsicElements {
-      "x-accordion": XelComponentProps<HTMLElement>;
-      "x-avatar": XelComponentProps<HTMLElement>;
-      "x-backdrop": XelComponentProps<HTMLElement>;
-      "x-box": XelComponentProps<HTMLElement>;
-      "x-button": XelComponentProps<HTMLElement>;
-      "x-buttons": XelComponentProps<HTMLElement>;
-      "x-card": XelComponentProps<HTMLElement>;
-      "x-checkbox": XelComponentProps<HTMLElement>;
-      "x-colorinput": XelComponentProps<HTMLElement>;
-      "x-colorpicker": XelComponentProps<HTMLElement>;
-      "x-colorselect": XelComponentProps<HTMLElement>;
-      "x-contextmenu": XelComponentProps<HTMLElement>;
-      "x-doctab": XelComponentProps<HTMLElement>;
-      "x-doctabs": XelComponentProps<HTMLElement>;
-      "x-drawer": XelComponentProps<HTMLElement>;
-      "x-icon": XelComponentProps<HTMLElement>;
-      "x-input": XelComponentProps<HTMLElement>;
-      "x-label": XelComponentProps<HTMLElement>;
-      "x-menu": XelComponentProps<HTMLElement>;
-      "x-menubar": XelComponentProps<HTMLElement>;
-      "x-menuitem": XelComponentProps<HTMLElement>;
-      "x-message": XelComponentProps<HTMLElement>;
-      "x-nav": XelComponentProps<HTMLElement>;
-      "x-navitem": XelComponentProps<HTMLElement>;
-      "x-notification": XelComponentProps<HTMLElement>;
-      "x-numberinput": XelComponentProps<HTMLElement>;
-      "x-pager": XelComponentProps<HTMLElement>;
-      "x-popover": XelComponentProps<HTMLElement>;
-      "x-progressbar": XelComponentProps<HTMLElement>;
-      "x-radio": XelComponentProps<HTMLElement>;
-      "x-radios": XelComponentProps<HTMLElement>;
-      "x-select": XelComponentProps<HTMLElement>;
-      "x-shortcut": XelComponentProps<HTMLElement>;
-      "x-slider": XelComponentProps<HTMLElement>;
-      "x-stepper": XelComponentProps<HTMLElement>;
-      "x-swatch": XelComponentProps<HTMLElement>;
-      "x-switch": XelComponentProps<HTMLElement>;
-      "x-tab": XelComponentProps<HTMLElement>;
-      "x-tabs": XelComponentProps<HTMLElement>;
-      "x-tag": XelComponentProps<HTMLElement>;
-      "x-tags": XelComponentProps<HTMLElement>;
-      "x-tagsinput": XelComponentProps<HTMLElement>;
-      "x-texteditor": XelComponentProps<HTMLElement>;
-      "x-throbber": XelComponentProps<HTMLElement>;
-      "x-titlebar": XelComponentProps<HTMLElement>;
-      "x-tooltip": XelComponentProps<HTMLElement>;
+      "x-accordion": XelComponentProps<XAccordionElement>;
+      "x-avatar": XelComponentProps<XAvatarElement>;
+      "x-backdrop": XelComponentProps<XBackdropElement>;
+      "x-box": XelComponentProps<XBoxElement>;
+      "x-button": XelComponentProps<XButtonElement>;
+      "x-buttons": XelComponentProps<XButtonsElement>;
+      "x-card": XelComponentProps<XCardElement>;
+      "x-checkbox": XelComponentProps<XCheckboxElement>;
+      "x-colorinput": XelComponentProps<XColorInputElement>;
+      "x-colorpicker": XelComponentProps<XColorPickerElement>;
+      "x-colorselect": XelComponentProps<XColorSelectElement>;
+      "x-contextmenu": XelComponentProps<XContextMenuElement>;
+      "x-doctab": XelComponentProps<XDocTabElement>;
+      "x-doctabs": XelComponentProps<XDocTabsElement>;
+      "x-drawer": XelComponentProps<XDrawerElement>;
+      "x-icon": XelComponentProps<XIconElement>;
+      "x-input": XelComponentProps<XInputElement>;
+      "x-label": XelComponentProps<XLabelElement>;
+      "x-menu": XelComponentProps<XMenuElement>;
+      "x-menubar": XelComponentProps<XMenubarElement>;
+      "x-menuitem": XelComponentProps<XMenuItemElement>;
+      "x-message": XelComponentProps<XMessageElement>;
+      "x-nav": XelComponentProps<XNavElement>;
+      "x-navitem": XelComponentProps<XNavItemElement>;
+      "x-notification": XelComponentProps<XNotificationElement>;
+      "x-numberinput": XelComponentProps<XNumberInputElement>;
+      "x-pager": XelComponentProps<XPagerElement>;
+      "x-popover": XelComponentProps<XPopoverElement>;
+      "x-progressbar": XelComponentProps<XProgressbarElement>;
+      "x-radio": XelComponentProps<XRadioElement>;
+      "x-radios": XelComponentProps<XRadiosElement>;
+      "x-select": XelComponentProps<XSelectElement>;
+      "x-shortcut": XelComponentProps<XShortcutElement>;
+      "x-slider": XelComponentProps<XSliderElement>;
+      "x-stepper": XelComponentProps<XStepperElement>;
+      "x-swatch": XelComponentProps<XSwatchElement>;
+      "x-switch": XelComponentProps<XSwitchElement>;
+      "x-tab": XelComponentProps<XTabElement>;
+      "x-tabs": XelComponentProps<XTabsElement>;
+      "x-tag": XelComponentProps<XTagElement>;
+      "x-tags": XelComponentProps<XTagsElement>;
+      "x-tagsinput": XelComponentProps<XTagsInputElement>;
+      "x-texteditor": XelComponentProps<XTextEditorElement>;
+      "x-throbber": XelComponentProps<XThrobberElement>;
+      "x-titlebar": XelComponentProps<XTitlebarElement>;
+      "x-tooltip": XelComponentProps<XTooltipElement>;
     }
   }
 }
 
 export type XelIntrinsicElements = JSX.IntrinsicElements;
-

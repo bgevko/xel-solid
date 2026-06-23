@@ -124,7 +124,7 @@ describe("Xel source coverage", () => {
 
     assert.equal(packageJson.files.includes("dist"), true);
     assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx";'), true);
-    assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<HTMLElement>'), true);
+    assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<XButtonElement>'), true);
   });
 
   test("package metadata allows public publishing", () => {
@@ -162,5 +162,27 @@ describe("Xel source coverage", () => {
     assert.equal(xelSolidXel.includes("ftl"), true);
     assert.equal(xelSolidIndex.includes("ftl"), true);
     assert.equal(xelSolidIndex.includes("Xel"), true);
+  });
+
+  test("has exact element class maps for every public wrapper and raw element", () => {
+    const xelJs = readXel("xel.js");
+    const elementTypesTs = read("src/element-types.ts");
+    const componentsTs = read("src/components.ts");
+    const jsxTs = read("src/jsx.ts");
+
+    const publicExports = [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+Element)\} from "\.\/elements\/([^"]+)\.js";/g)]
+      .filter(([, , importPath]) => importPath.startsWith("x-"))
+      .map(([, elementClassName, importPath]) => ({
+        elementClassName,
+        componentName: elementClassName.replace(/Element$/, ""),
+        localName: localNameFromImportPath(importPath),
+      }));
+
+    for (const item of publicExports) {
+      assert.equal(elementTypesTs.includes(`"${item.localName}": ${item.elementClassName}`), true, item.localName);
+      assert.equal(elementTypesTs.includes(`${item.componentName}: ${item.elementClassName}`), true, item.componentName);
+      assert.equal(componentsTs.includes(`Component<${item.elementClassName}>`), true, item.componentName);
+      assert.equal(jsxTs.includes(`"${item.localName}": XelComponentProps<${item.elementClassName}>`), true, item.localName);
+    }
   });
 });

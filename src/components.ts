@@ -1,6 +1,54 @@
 import type { JSX } from "solid-js";
 import { createXelComponent } from "./createXelComponent";
 import type { XelComponentProps } from "./types";
+import type {
+  XAccordionElement,
+  XAvatarElement,
+  XBackdropElement,
+  XBoxElement,
+  XButtonElement,
+  XButtonsElement,
+  XCardElement,
+  XCheckboxElement,
+  XColorInputElement,
+  XColorPickerElement,
+  XColorSelectElement,
+  XContextMenuElement,
+  XDocTabElement,
+  XDocTabsElement,
+  XDrawerElement,
+  XIconElement,
+  XInputElement,
+  XLabelElement,
+  XMenuElement,
+  XMenubarElement,
+  XMenuItemElement,
+  XMessageElement,
+  XNavElement,
+  XNavItemElement,
+  XNotificationElement,
+  XNumberInputElement,
+  XPagerElement,
+  XPopoverElement,
+  XProgressbarElement,
+  XRadioElement,
+  XRadiosElement,
+  XSelectElement,
+  XShortcutElement,
+  XSliderElement,
+  XStepperElement,
+  XSwatchElement,
+  XSwitchElement,
+  XTabElement,
+  XTabsElement,
+  XTagElement,
+  XTagsElement,
+  XTagsInputElement,
+  XTextEditorElement,
+  XThrobberElement,
+  XTitlebarElement,
+  XTooltipElement,
+} from "./xel";
 
 import "xel/elements/x-accordion.js";
 import "xel/elements/x-avatar.js";
@@ -53,50 +101,49 @@ type Component<TElement extends HTMLElement = HTMLElement> = (
   props: XelComponentProps<TElement>,
 ) => JSX.Element;
 
-export const XAccordion: Component = createXelComponent("x-accordion");
-export const XAvatar: Component = createXelComponent("x-avatar");
-export const XBackdrop: Component = createXelComponent("x-backdrop");
-export const XBox: Component = createXelComponent("x-box");
-export const XButton: Component = createXelComponent("x-button");
-export const XButtons: Component = createXelComponent("x-buttons");
-export const XCard: Component = createXelComponent("x-card");
-export const XCheckbox: Component = createXelComponent("x-checkbox");
-export const XColorInput: Component = createXelComponent("x-colorinput");
-export const XColorPicker: Component = createXelComponent("x-colorpicker");
-export const XColorSelect: Component = createXelComponent("x-colorselect");
-export const XContextMenu: Component = createXelComponent("x-contextmenu");
-export const XDocTab: Component = createXelComponent("x-doctab");
-export const XDocTabs: Component = createXelComponent("x-doctabs");
-export const XDrawer: Component = createXelComponent("x-drawer");
-export const XIcon: Component = createXelComponent("x-icon");
-export const XInput: Component = createXelComponent("x-input");
-export const XLabel: Component = createXelComponent("x-label");
-export const XMenu: Component = createXelComponent("x-menu");
-export const XMenubar: Component = createXelComponent("x-menubar");
-export const XMenuItem: Component = createXelComponent("x-menuitem");
-export const XMessage: Component = createXelComponent("x-message");
-export const XNav: Component = createXelComponent("x-nav");
-export const XNavItem: Component = createXelComponent("x-navitem");
-export const XNotification: Component = createXelComponent("x-notification");
-export const XNumberInput: Component = createXelComponent("x-numberinput");
-export const XPager: Component = createXelComponent("x-pager");
-export const XPopover: Component = createXelComponent("x-popover");
-export const XProgressbar: Component = createXelComponent("x-progressbar");
-export const XRadio: Component = createXelComponent("x-radio");
-export const XRadios: Component = createXelComponent("x-radios");
-export const XSelect: Component = createXelComponent("x-select");
-export const XShortcut: Component = createXelComponent("x-shortcut");
-export const XSlider: Component = createXelComponent("x-slider");
-export const XStepper: Component = createXelComponent("x-stepper");
-export const XSwatch: Component = createXelComponent("x-swatch");
-export const XSwitch: Component = createXelComponent("x-switch");
-export const XTab: Component = createXelComponent("x-tab");
-export const XTabs: Component = createXelComponent("x-tabs");
-export const XTag: Component = createXelComponent("x-tag");
-export const XTags: Component = createXelComponent("x-tags");
-export const XTagsInput: Component = createXelComponent("x-tagsinput");
-export const XTextEditor: Component = createXelComponent("x-texteditor");
-export const XThrobber: Component = createXelComponent("x-throbber");
-export const XTitlebar: Component = createXelComponent("x-titlebar");
-export const XTooltip: Component = createXelComponent("x-tooltip");
-
+export const XAccordion: Component<XAccordionElement> = createXelComponent("x-accordion");
+export const XAvatar: Component<XAvatarElement> = createXelComponent("x-avatar");
+export const XBackdrop: Component<XBackdropElement> = createXelComponent("x-backdrop");
+export const XBox: Component<XBoxElement> = createXelComponent("x-box");
+export const XButton: Component<XButtonElement> = createXelComponent("x-button");
+export const XButtons: Component<XButtonsElement> = createXelComponent("x-buttons");
+export const XCard: Component<XCardElement> = createXelComponent("x-card");
+export const XCheckbox: Component<XCheckboxElement> = createXelComponent("x-checkbox");
+export const XColorInput: Component<XColorInputElement> = createXelComponent("x-colorinput");
+export const XColorPicker: Component<XColorPickerElement> = createXelComponent("x-colorpicker");
+export const XColorSelect: Component<XColorSelectElement> = createXelComponent("x-colorselect");
+export const XContextMenu: Component<XContextMenuElement> = createXelComponent("x-contextmenu");
+export const XDocTab: Component<XDocTabElement> = createXelComponent("x-doctab");
+export const XDocTabs: Component<XDocTabsElement> = createXelComponent("x-doctabs");
+export const XDrawer: Component<XDrawerElement> = createXelComponent("x-drawer");
+export const XIcon: Component<XIconElement> = createXelComponent("x-icon");
+export const XInput: Component<XInputElement> = createXelComponent("x-input");
+export const XLabel: Component<XLabelElement> = createXelComponent("x-label");
+export const XMenu: Component<XMenuElement> = createXelComponent("x-menu");
+export const XMenubar: Component<XMenubarElement> = createXelComponent("x-menubar");
+export const XMenuItem: Component<XMenuItemElement> = createXelComponent("x-menuitem");
+export const XMessage: Component<XMessageElement> = createXelComponent("x-message");
+export const XNav: Component<XNavElement> = createXelComponent("x-nav");
+export const XNavItem: Component<XNavItemElement> = createXelComponent("x-navitem");
+export const XNotification: Component<XNotificationElement> = createXelComponent("x-notification");
+export const XNumberInput: Component<XNumberInputElement> = createXelComponent("x-numberinput");
+export const XPager: Component<XPagerElement> = createXelComponent("x-pager");
+export const XPopover: Component<XPopoverElement> = createXelComponent("x-popover");
+export const XProgressbar: Component<XProgressbarElement> = createXelComponent("x-progressbar");
+export const XRadio: Component<XRadioElement> = createXelComponent("x-radio");
+export const XRadios: Component<XRadiosElement> = createXelComponent("x-radios");
+export const XSelect: Component<XSelectElement> = createXelComponent("x-select");
+export const XShortcut: Component<XShortcutElement> = createXelComponent("x-shortcut");
+export const XSlider: Component<XSliderElement> = createXelComponent("x-slider");
+export const XStepper: Component<XStepperElement> = createXelComponent("x-stepper");
+export const XSwatch: Component<XSwatchElement> = createXelComponent("x-swatch");
+export const XSwitch: Component<XSwitchElement> = createXelComponent("x-switch");
+export const XTab: Component<XTabElement> = createXelComponent("x-tab");
+export const XTabs: Component<XTabsElement> = createXelComponent("x-tabs");
+export const XTag: Component<XTagElement> = createXelComponent("x-tag");
+export const XTags: Component<XTagsElement> = createXelComponent("x-tags");
+export const XTagsInput: Component<XTagsInputElement> = createXelComponent("x-tagsinput");
+export const XTextEditor: Component<XTextEditorElement> = createXelComponent("x-texteditor");
+export const XThrobber: Component<XThrobberElement> = createXelComponent("x-throbber");
+export const XTitlebar: Component<XTitlebarElement> = createXelComponent("x-titlebar");
+export const XTooltip: Component<XTooltipElement> = createXelComponent("x-tooltip");

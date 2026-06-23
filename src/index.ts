@@ -100,4 +100,5 @@ export {
   XTooltip,
 } from "./components";
 export type { XelIntrinsicElements } from "./jsx";
+export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types";
 export type { XelComponentProps, XelCustomEvent } from "./types";
