@@ -48,5 +48,5 @@ export {
   XTitlebar,
   XTooltip,
 } from "./components";
+export type { XelIntrinsicElements } from "./jsx";
 export type { XelComponentProps, XelCustomEvent } from "./types";
-

@@ -117,4 +117,13 @@ describe("Xel source coverage", () => {
       assert.equal(typesTs.includes(`${propName}?: Booleanish`), true, propName);
     }
   });
+
+  test("ships raw custom element JSX declarations in dist", () => {
+    const packageJson = JSON.parse(read("package.json")) as { files: string[] };
+    const indexTs = read("src/index.ts");
+
+    assert.equal(packageJson.files.includes("dist"), true);
+    assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx";'), true);
+    assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<HTMLElement>'), true);
+  });
 });
