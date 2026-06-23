@@ -51,3 +51,15 @@ test("binds the broader Xel custom event prop set", async ({ page }) => {
   await page.locator("x-accordion#extra-event-accordion").dispatchEvent("collapse");
   await expect(page.locator("#extra-event-count")).toHaveText("2");
 });
+
+test("normalizes additional Xel boolean props", async ({ page }) => {
+  await page.goto("/tests/fixtures/wrapper-app.html");
+
+  const menu = page.locator("x-menu#opened-menu");
+
+  await expect(menu).not.toHaveAttribute("opened", "");
+  await page.locator("#open-menu").click();
+  await expect(menu).toHaveAttribute("opened", "");
+  await page.locator("#close-menu").click();
+  await expect(menu).not.toHaveAttribute("opened", "");
+});

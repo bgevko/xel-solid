@@ -5,32 +5,28 @@ import { bindXelEvents, eventPropNames } from "./events";
 import type { XelComponentProps } from "./types";
 
 const booleanPropNames = [
+  "alpha",
   "checked",
+  "compact",
+  "condensed",
   "disabled",
+  "ellipsis",
   "expanded",
+  "expandable",
   "hidden",
   "mixed",
+  "modal",
+  "noautocollapse",
   "open",
+  "opened",
+  "readonly",
+  "readOnly",
+  "required",
   "selected",
+  "spellcheck",
   "toggled",
   "togglable",
 ] as const;
-
-const booleanPropNameSet = new Set<string>(booleanPropNames);
-
-function normalizeBooleanProps<TProps extends Record<string, unknown>>(props: TProps): TProps {
-  return new Proxy(props, {
-    get(target, prop, receiver) {
-      const value = Reflect.get(target, prop, receiver);
-
-      if (typeof prop === "string" && booleanPropNameSet.has(prop)) {
-        return value === false || value === null ? undefined : value;
-      }
-
-      return value;
-    },
-  });
-}
 
 function assignProperties<TElement extends HTMLElement>(
   element: TElement,
@@ -45,20 +41,39 @@ function assignProperties<TElement extends HTMLElement>(
   }
 }
 
+function assignBooleanAttributes<TElement extends HTMLElement>(
+  element: TElement,
+  props: Partial<Record<(typeof booleanPropNames)[number], unknown>>,
+) {
+  for (const propName of booleanPropNames) {
+    const value = props[propName];
+
+    if (value === false || value === null || value === undefined) {
+      element.removeAttribute(propName);
+    }
+    else {
+      element.setAttribute(propName, "");
+    }
+  }
+}
+
 export function createXelComponent<TElement extends HTMLElement>(localName: string) {
   return function XelComponent(props: XelComponentProps<TElement>): JSX.Element {
     let element: TElement | undefined;
-    const [local, eventProps, others] = splitProps(
+    const [local, eventProps, booleanProps, others] = splitProps(
       props,
       ["children", "properties", "ref"],
       eventPropNames,
+      booleanPropNames,
     );
 
     createRenderEffect(() => {
       const properties = local.properties;
+      const currentBooleanProps = { ...booleanProps };
 
       if (element) {
         assignProperties(element, properties);
+        assignBooleanAttributes(element, currentBooleanProps);
       }
     });
 
@@ -75,12 +90,13 @@ export function createXelComponent<TElement extends HTMLElement>(localName: stri
             }
 
             assignProperties(node, local.properties);
+            assignBooleanAttributes(node, booleanProps);
 
             const cleanup = bindXelEvents(node, eventProps);
             onCleanup(cleanup);
           },
         },
-        normalizeBooleanProps(others),
+        others,
         {
           get children() {
             return local.children;

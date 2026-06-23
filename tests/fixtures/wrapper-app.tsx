@@ -1,9 +1,10 @@
 import { createSignal } from "solid-js";
 import { render } from "solid-js/web";
-import { XAccordion, XButton, XInput, XLabel } from "../../src";
+import { XAccordion, XButton, XInput, XLabel, XMenu, XMenuItem } from "../../src";
 
 function App() {
   const [disabled, setDisabled] = createSignal(false);
+  const [opened, setOpened] = createSignal(false);
   const [eventCount, setEventCount] = createSignal(0);
   const [extraEventCount, setExtraEventCount] = createSignal(0);
   const [propertyValue, setPropertyValue] = createSignal("initial");
@@ -28,12 +29,26 @@ function App() {
         <XLabel>Boolean button</XLabel>
       </XButton>
 
+      <XMenu id="opened-menu" opened={opened()}>
+        <XMenuItem>
+          <XLabel>Menu item</XLabel>
+        </XMenuItem>
+      </XMenu>
+
       <button id="enable-button" onClick={() => setDisabled(false)}>
         enable
       </button>
 
       <button id="disable-button" onClick={() => setDisabled(true)}>
         disable
+      </button>
+
+      <button id="open-menu" onClick={() => setOpened(true)}>
+        open menu
+      </button>
+
+      <button id="close-menu" onClick={() => setOpened(false)}>
+        close menu
       </button>
 
       <XInput

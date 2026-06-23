@@ -41,13 +41,25 @@ export type XelEventProps<TElement extends HTMLElement = HTMLElement> = {
 };
 
 export type XelBooleanProps = {
+  alpha?: Booleanish;
   checked?: Booleanish;
+  compact?: Booleanish;
+  condensed?: Booleanish;
   disabled?: Booleanish;
+  ellipsis?: Booleanish;
   expanded?: Booleanish;
+  expandable?: Booleanish;
   hidden?: Booleanish;
   mixed?: Booleanish;
+  modal?: Booleanish;
+  noautocollapse?: Booleanish;
   open?: Booleanish;
+  opened?: Booleanish;
+  readonly?: Booleanish;
+  readOnly?: Booleanish;
+  required?: Booleanish;
   selected?: Booleanish;
+  spellcheck?: Booleanish;
   toggled?: Booleanish;
   togglable?: Booleanish;
 };

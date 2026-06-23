@@ -83,4 +83,38 @@ describe("Xel source coverage", () => {
       }
     }
   });
+
+  test("normalizes every boolean property documented by public Xel element getters", () => {
+    const createXelComponentTs = read("src/createXelComponent.ts");
+    const typesTs = read("src/types.ts");
+
+    const expectedBooleanProps = [
+      "alpha",
+      "checked",
+      "compact",
+      "condensed",
+      "disabled",
+      "ellipsis",
+      "expanded",
+      "expandable",
+      "hidden",
+      "mixed",
+      "modal",
+      "noautocollapse",
+      "open",
+      "opened",
+      "readonly",
+      "readOnly",
+      "required",
+      "selected",
+      "spellcheck",
+      "toggled",
+      "togglable",
+    ];
+
+    for (const propName of expectedBooleanProps) {
+      assert.equal(createXelComponentTs.includes(`"${propName}"`), true, propName);
+      assert.equal(typesTs.includes(`${propName}?: Booleanish`), true, propName);
+    }
+  });
 });
