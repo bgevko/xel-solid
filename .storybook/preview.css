@@ -1,0 +1,64 @@
+html,
+body,
+#storybook-root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: Canvas;
+  color: CanvasText;
+  font: 14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.xel-storybook-shell {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  min-width: min(920px, calc(100vw - 48px));
+  min-height: min(520px, calc(100vh - 96px));
+  padding: 32px;
+}
+
+.xel-story-frame {
+  display: grid;
+  gap: 18px;
+  align-items: start;
+  justify-items: start;
+}
+
+.xel-story-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.xel-story-stack {
+  display: grid;
+  gap: 10px;
+  align-items: start;
+  justify-items: start;
+}
+
+.xel-story-surface {
+  box-sizing: border-box;
+  display: grid;
+  gap: 12px;
+  min-width: 320px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  border-radius: 8px;
+}
+
+.xel-story-titlebar-window {
+  width: 420px;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.xel-story-titlebar-window-content {
+  min-height: 120px;
+  padding: 16px;
+}
