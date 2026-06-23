@@ -141,4 +141,26 @@ describe("Xel source coverage", () => {
     assert.equal(Object.hasOwn(packageJson.exports ?? {}, "."), true);
     assert.equal(Object.hasOwn(packageJson.exports ?? {}, "./register"), true);
   });
+
+  test("re-exports every public non-Solid Xel API from the Xel barrel", () => {
+    const xelJs = readXel("xel.js");
+    const xelSolidIndex = read("src/index.ts");
+    const xelSolidXel = read("src/xel.ts");
+
+    const xelElementExports = sorted(
+      [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+Element)\} from/g)].map(
+        ([, exportName]) => exportName,
+      ),
+    );
+
+    for (const exportName of xelElementExports) {
+      assert.equal(xelSolidXel.includes(exportName), true, exportName);
+      assert.equal(xelSolidIndex.includes(exportName), true, exportName);
+    }
+
+    assert.equal(xelSolidXel.includes("default as Xel"), true);
+    assert.equal(xelSolidXel.includes("ftl"), true);
+    assert.equal(xelSolidIndex.includes("ftl"), true);
+    assert.equal(xelSolidIndex.includes("Xel"), true);
+  });
 });
