@@ -167,6 +167,7 @@ describe("Xel source coverage", () => {
   test("has exact element class maps for every public wrapper and raw element", () => {
     const xelJs = readXel("xel.js");
     const elementTypesTs = read("src/element-types.ts");
+    const componentPropsTs = read("src/component-props.ts");
     const componentsTs = read("src/components.ts");
     const jsxTs = read("src/jsx.ts");
 
@@ -181,8 +182,24 @@ describe("Xel source coverage", () => {
     for (const item of publicExports) {
       assert.equal(elementTypesTs.includes(`"${item.localName}": ${item.elementClassName}`), true, item.localName);
       assert.equal(elementTypesTs.includes(`${item.componentName}: ${item.elementClassName}`), true, item.componentName);
-      assert.equal(componentsTs.includes(`Component<${item.elementClassName}>`), true, item.componentName);
+      assert.equal(componentPropsTs.includes(`XelComponentProps<XelComponentElementMap["${item.componentName}"]>`), true, item.componentName);
+      assert.equal(componentsTs.includes(`Component<${item.componentName}Props>`), true, item.componentName);
       assert.equal(jsxTs.includes(`"${item.localName}": XelComponentProps<${item.elementClassName}>`), true, item.localName);
+    }
+  });
+
+  test("exports component-specific prop aliases for every wrapper", () => {
+    const xelJs = readXel("xel.js");
+    const componentPropsTs = read("src/component-props.ts");
+    const indexTs = read("src/index.ts");
+
+    const componentNames = [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+)Element\} from "\.\/elements\/([^"]+)\.js";/g)]
+      .filter(([, , importPath]) => importPath.startsWith("x-"))
+      .map(([, componentName]) => componentName);
+
+    for (const componentName of componentNames) {
+      assert.equal(componentPropsTs.includes(`export type ${componentName}Props =`), true, componentName);
+      assert.equal(indexTs.includes(`${componentName}Props`), true, componentName);
     }
   });
 });
