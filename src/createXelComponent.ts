@@ -16,16 +16,20 @@ const booleanPropNames = [
   "togglable",
 ] as const;
 
+const booleanPropNameSet = new Set<string>(booleanPropNames);
+
 function normalizeBooleanProps<TProps extends Record<string, unknown>>(props: TProps): TProps {
-  const normalized: Record<string, unknown> = { ...props };
+  return new Proxy(props, {
+    get(target, prop, receiver) {
+      const value = Reflect.get(target, prop, receiver);
 
-  for (const propName of booleanPropNames) {
-    if (normalized[propName] === false || normalized[propName] === null) {
-      normalized[propName] = undefined;
-    }
-  }
+      if (typeof prop === "string" && booleanPropNameSet.has(prop)) {
+        return value === false || value === null ? undefined : value;
+      }
 
-  return normalized as TProps;
+      return value;
+    },
+  });
 }
 
 function assignProperties<TElement extends HTMLElement>(
@@ -51,8 +55,10 @@ export function createXelComponent<TElement extends HTMLElement>(localName: stri
     );
 
     createRenderEffect(() => {
+      const properties = local.properties;
+
       if (element) {
-        assignProperties(element, local.properties);
+        assignProperties(element, properties);
       }
     });
 
