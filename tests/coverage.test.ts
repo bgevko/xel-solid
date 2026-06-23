@@ -126,4 +126,19 @@ describe("Xel source coverage", () => {
     assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx";'), true);
     assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<HTMLElement>'), true);
   });
+
+  test("package metadata allows public publishing", () => {
+    const packageJson = JSON.parse(read("package.json")) as {
+      private?: boolean;
+      publishConfig?: { access?: string };
+      exports?: Record<string, unknown>;
+      files?: string[];
+    };
+
+    assert.equal(packageJson.private, undefined);
+    assert.equal(packageJson.publishConfig?.access, "public");
+    assert.deepEqual(packageJson.files, ["dist", "README.md", "LICENSE"]);
+    assert.equal(Object.hasOwn(packageJson.exports ?? {}, "."), true);
+    assert.equal(Object.hasOwn(packageJson.exports ?? {}, "./register"), true);
+  });
 });

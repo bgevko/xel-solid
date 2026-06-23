@@ -10,6 +10,8 @@ SolidJS bindings for [Xel](https://xel-toolkit.org/) Web Components.
 bun add solid-js xel xel-solid
 ```
 
+`solid-js` and `xel` are peer dependencies. Install them in each app that consumes `xel-solid`.
+
 ## Usage
 
 ```tsx
@@ -74,4 +76,3 @@ bun run test
 bun run build
 npm pack --dry-run
 ```
-
