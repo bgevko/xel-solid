@@ -47,8 +47,7 @@ const preview: Preview = {
       defaultValue: "fluent",
       toolbar: {
         icon: "paintbrush",
-        items: themeItems,
-        showName: true,
+        items: [...themeItems],
         dynamicTitle: true,
       },
     },

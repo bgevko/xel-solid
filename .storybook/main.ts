@@ -9,9 +9,6 @@ const config: StorybookConfig = {
     { from: "../node_modules/xel/icons", to: "/icons" },
     { from: "../node_modules/xel/locales", to: "/locales" },
   ],
-  docs: {
-    autodocs: true,
-  },
 };
 
 export default config;
