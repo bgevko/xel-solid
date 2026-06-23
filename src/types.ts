@@ -1,4 +1,5 @@
 import type { JSX } from "solid-js";
+import type { XelEventDetailMap, XelEventName, XelTypedCustomEvent } from "./event-types";
 
 export type Booleanish = boolean | "" | undefined | null;
 
@@ -11,33 +12,36 @@ export type XelEventHandler<TElement extends HTMLElement, TEvent extends Event =
   },
 ) => void;
 
+type XelTypedEventHandler<TElement extends HTMLElement, TName extends XelEventName> =
+  XelEventHandler<TElement, XelTypedCustomEvent<TName>>;
+
 export type XelEventProps<TElement extends HTMLElement = HTMLElement> = {
-  onAdd?: XelEventHandler<TElement, Event>;
-  onBeforeToggle?: XelEventHandler<TElement, Event>;
-  onBeforeValidate?: XelEventHandler<TElement, Event>;
-  onButtonClick?: XelEventHandler<TElement, Event>;
-  onChange?: XelEventHandler<TElement, Event>;
-  onChangeEnd?: XelEventHandler<TElement, Event>;
-  onChangeStart?: XelEventHandler<TElement, Event>;
-  onClose?: XelEventHandler<TElement, Event>;
-  onCollapse?: XelEventHandler<TElement, Event>;
-  onDecrement?: XelEventHandler<TElement, Event>;
-  onDecrementEnd?: XelEventHandler<TElement, Event>;
-  onDecrementStart?: XelEventHandler<TElement, Event>;
-  onExpand?: XelEventHandler<TElement, Event>;
-  onIncrement?: XelEventHandler<TElement, Event>;
-  onIncrementEnd?: XelEventHandler<TElement, Event>;
-  onIncrementStart?: XelEventHandler<TElement, Event>;
-  onInput?: XelEventHandler<TElement, Event>;
-  onOpen?: XelEventHandler<TElement, Event>;
-  onPin?: XelEventHandler<TElement, Event>;
-  onRearrange?: XelEventHandler<TElement, Event>;
-  onRemove?: XelEventHandler<TElement, Event>;
-  onSelect?: XelEventHandler<TElement, Event>;
-  onTextInputModeEnd?: XelEventHandler<TElement, Event>;
-  onTextInputModeStart?: XelEventHandler<TElement, Event>;
-  onToggle?: XelEventHandler<TElement, Event>;
-  onUserClose?: XelEventHandler<TElement, Event>;
+  onAdd?: XelTypedEventHandler<TElement, "add">;
+  onBeforeToggle?: XelTypedEventHandler<TElement, "beforetoggle">;
+  onBeforeValidate?: XelTypedEventHandler<TElement, "beforevalidate">;
+  onButtonClick?: XelTypedEventHandler<TElement, "buttonclick">;
+  onChange?: XelTypedEventHandler<TElement, "change">;
+  onChangeEnd?: XelTypedEventHandler<TElement, "changeend">;
+  onChangeStart?: XelTypedEventHandler<TElement, "changestart">;
+  onClose?: XelTypedEventHandler<TElement, "close">;
+  onCollapse?: XelTypedEventHandler<TElement, "collapse">;
+  onDecrement?: XelTypedEventHandler<TElement, "decrement">;
+  onDecrementEnd?: XelTypedEventHandler<TElement, "decrementend">;
+  onDecrementStart?: XelTypedEventHandler<TElement, "decrementstart">;
+  onExpand?: XelTypedEventHandler<TElement, "expand">;
+  onIncrement?: XelTypedEventHandler<TElement, "increment">;
+  onIncrementEnd?: XelTypedEventHandler<TElement, "incrementend">;
+  onIncrementStart?: XelTypedEventHandler<TElement, "incrementstart">;
+  onInput?: XelTypedEventHandler<TElement, "input">;
+  onOpen?: XelTypedEventHandler<TElement, "open">;
+  onPin?: XelTypedEventHandler<TElement, "pin">;
+  onRearrange?: XelTypedEventHandler<TElement, "rearrange">;
+  onRemove?: XelTypedEventHandler<TElement, "remove">;
+  onSelect?: XelTypedEventHandler<TElement, "select">;
+  onTextInputModeEnd?: XelTypedEventHandler<TElement, "textinputmodeend">;
+  onTextInputModeStart?: XelTypedEventHandler<TElement, "textinputmodestart">;
+  onToggle?: XelTypedEventHandler<TElement, "toggle">;
+  onUserClose?: XelTypedEventHandler<TElement, "userclose">;
 };
 
 export type XelBooleanProps = {

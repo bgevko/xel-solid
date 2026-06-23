@@ -202,4 +202,19 @@ describe("Xel source coverage", () => {
       assert.equal(indexTs.includes(`${componentName}Props`), true, componentName);
     }
   });
+
+  test("exports typed event detail maps for all supported custom events", () => {
+    const eventTypesTs = read("src/event-types.ts");
+    const eventsTs = read("src/events.ts");
+    const typesTs = read("src/types.ts");
+
+    const eventNames = [...eventsTs.matchAll(/: "([^"]+)"/g)].map(([, eventName]) => eventName);
+
+    for (const eventName of eventNames) {
+      assert.equal(eventTypesTs.includes(`${eventName}:`), true, eventName);
+    }
+
+    assert.equal(typesTs.includes("XelEventDetailMap"), true);
+    assert.equal(typesTs.includes("XelTypedCustomEvent"), true);
+  });
 });

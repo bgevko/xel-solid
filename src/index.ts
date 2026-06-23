@@ -149,4 +149,9 @@ export type {
   XTitlebarProps,
   XTooltipProps,
 } from "./component-props";
+export type {
+  XelEventDetailMap,
+  XelEventName,
+  XelTypedCustomEvent,
+} from "./event-types";
 export type { XelComponentProps, XelCustomEvent } from "./types";

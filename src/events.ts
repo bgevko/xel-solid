@@ -40,14 +40,14 @@ export function bindXelEvents<TElement extends HTMLElement>(
   const cleanups: Array<() => void> = [];
 
   for (const propName of eventPropNames) {
-    const handler = props[propName];
+    const handler = props[propName] as ((event: Event) => void) | undefined;
 
     if (typeof handler !== "function") {
       continue;
     }
 
     const eventName = xelEventPropToEventName[propName];
-    const listener = (event: Event) => handler(event as Parameters<typeof handler>[0]);
+    const listener = (event: Event) => handler(event);
 
     element.addEventListener(eventName, listener);
     cleanups.push(() => element.removeEventListener(eventName, listener));
@@ -59,4 +59,3 @@ export function bindXelEvents<TElement extends HTMLElement>(
     }
   };
 }
-
