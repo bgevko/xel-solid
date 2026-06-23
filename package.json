@@ -45,7 +45,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
-    "test": "bun run ts && node --test tests/coverage.test.ts && bun run test:runtime",
+    "test": "bun run ts && node --test tests/coverage.test.ts && bun run test:runtime && node --test tests/consumer-package.test.ts",
     "test:runtime": "node node_modules/@playwright/test/cli.js test --config=playwright.config.cjs",
     "ts": "tsc -p tsconfig.json --noEmit",
     "prepack": "bun run build"

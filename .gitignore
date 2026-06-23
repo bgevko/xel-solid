@@ -2,5 +2,9 @@ node_modules/
 dist/
 playwright-report/
 test-results/
+tests/fixtures/consumer/bun.lock
+tests/fixtures/consumer/dist/
+tests/fixtures/consumer/node_modules/
+tests/fixtures/consumer/xel-solid-*.tgz
 *.tgz
 .DS_Store
