@@ -13,6 +13,7 @@ import {
   XColorPicker,
   XColorSelect,
   XContextMenu,
+  XDialog,
   XDocTab,
   XDocTabs,
   XDrawer,
@@ -47,6 +48,7 @@ import {
   XThrobber,
   XTitlebar,
   XTooltip,
+  XelProvider,
 } from "../src";
 
 const meta = {
@@ -79,6 +81,21 @@ function Stack(props: { children: JSX.Element }) {
 function Surface(props: { children: JSX.Element }) {
   return <div class="xel-story-surface">{props.children}</div>;
 }
+
+export const ProviderSetup: Story = {
+  name: "Provider setup",
+  tags: ["visual"],
+  render: () => (
+    <XelProvider theme="material" accentColor="blue" icons={["material"]} assetBaseUrl="">
+      <Frame>
+        <XButton>
+          <XIcon href="#home" />
+          <XLabel>Provider setup</XLabel>
+        </XButton>
+      </Frame>
+    </XelProvider>
+  ),
+};
 
 function EditMenu() {
   return (
@@ -890,6 +907,21 @@ export const Drawer: Story = {
           />
         </XButton>
       </Stack>
+    </Frame>
+  ),
+};
+
+export const Dialog: Story = {
+  name: "Dialog",
+  tags: ["visual"],
+  render: () => (
+    <Frame>
+      <XDialog open style={{ position: "static", margin: "0", width: "260px" }}>
+        <XLabel>Dialog content</XLabel>
+        <XButton>
+          <XLabel>Close</XLabel>
+        </XButton>
+      </XDialog>
     </Frame>
   ),
 };

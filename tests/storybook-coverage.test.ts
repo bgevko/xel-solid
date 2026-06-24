@@ -99,4 +99,15 @@ describe("Storybook visual coverage", () => {
       assert.equal(storiesTsx.includes(`tags: ["visual"]`), true, storyName);
     }
   });
+
+  test("Storybook covers Solid setup and native dialog surfaces", () => {
+    const storiesTsx = read("stories/xel-components.stories.tsx");
+
+    assert.match(storiesTsx, /export const ProviderSetup: Story =/);
+    assert.match(storiesTsx, /name: "Provider setup"/);
+    assert.match(storiesTsx, /<XelProvider/);
+    assert.match(storiesTsx, /export const Dialog: Story =/);
+    assert.match(storiesTsx, /name: "Dialog"/);
+    assert.match(storiesTsx, /<XDialog open/);
+  });
 });
