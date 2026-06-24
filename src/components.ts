@@ -49,52 +49,7 @@ import type {
   XTooltipProps,
 } from "./component-props";
 
-import "xel/elements/x-accordion.js";
-import "xel/elements/x-avatar.js";
-import "xel/elements/x-backdrop.js";
-import "xel/elements/x-box.js";
-import "xel/elements/x-button.js";
-import "xel/elements/x-buttons.js";
-import "xel/elements/x-card.js";
-import "xel/elements/x-checkbox.js";
-import "xel/elements/x-colorinput.js";
-import "xel/elements/x-colorpicker/x-colorpicker.js";
-import "xel/elements/x-colorselect.js";
-import "xel/elements/x-contextmenu.js";
-import "xel/elements/x-doctab.js";
-import "xel/elements/x-doctabs.js";
-import "xel/elements/x-drawer.js";
-import "xel/elements/x-icon.js";
-import "xel/elements/x-input.js";
-import "xel/elements/x-label.js";
-import "xel/elements/x-menu.js";
-import "xel/elements/x-menubar.js";
-import "xel/elements/x-menuitem.js";
-import "xel/elements/x-message.js";
-import "xel/elements/x-nav.js";
-import "xel/elements/x-navitem.js";
-import "xel/elements/x-notification.js";
-import "xel/elements/x-numberinput.js";
-import "xel/elements/x-pager.js";
-import "xel/elements/x-popover.js";
-import "xel/elements/x-progressbar.js";
-import "xel/elements/x-radio.js";
-import "xel/elements/x-radios.js";
-import "xel/elements/x-select.js";
-import "xel/elements/x-shortcut.js";
-import "xel/elements/x-slider.js";
-import "xel/elements/x-stepper.js";
-import "xel/elements/x-swatch.js";
-import "xel/elements/x-switch.js";
-import "xel/elements/x-tab.js";
-import "xel/elements/x-tabs.js";
-import "xel/elements/x-tag.js";
-import "xel/elements/x-tags.js";
-import "xel/elements/x-tagsinput.js";
-import "xel/elements/x-texteditor.js";
-import "xel/elements/x-throbber.js";
-import "xel/elements/x-titlebar.js";
-import "xel/elements/x-tooltip.js";
+import "xel";
 
 type Component<TProps> = (props: TProps) => JSX.Element;
 
