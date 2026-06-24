@@ -6,8 +6,6 @@ import { test } from "node:test";
 
 const root = join(import.meta.dirname, "..");
 const fixture = join(root, "tests/fixtures/consumer");
-const tarball = join(root, "xel-solid-0.0.0.tgz");
-const fixtureTarball = join(fixture, "xel-solid-0.0.0.tgz");
 
 function run(command: string, args: string[], cwd: string) {
   const result = spawnSync(command, args, {
@@ -23,19 +21,27 @@ function run(command: string, args: string[], cwd: string) {
       result.stderr,
     ].join("\n"));
   }
+
+  return result.stdout;
 }
 
 test("packed package installs and builds in a separate Solid consumer", () => {
   rmSync(join(fixture, "node_modules"), { recursive: true, force: true });
   rmSync(join(fixture, "dist"), { recursive: true, force: true });
   rmSync(join(fixture, "bun.lock"), { force: true });
-  rmSync(fixtureTarball, { force: true });
 
-  run("npm", ["pack"], root);
+  const packOutput = run("npm", ["pack", "--json"], root);
+  const [{ filename }] = JSON.parse(packOutput) as [{ filename: string }];
+  const tarball = join(root, filename);
+  const fixtureTarball = join(fixture, "xel-solid-fixture.tgz");
+
+  rmSync(fixtureTarball, { force: true });
   copyFileSync(tarball, fixtureTarball);
   run("bun", ["install"], fixture);
   run("bun", ["run", "build"], fixture);
 
   assert.equal(existsSync(join(fixture, "dist/index.html")), true);
+  assert.equal(existsSync(join(fixture, "dist/xel/themes/material.css")), true);
+  assert.equal(existsSync(join(fixture, "dist/xel/themes/base.css")), true);
+  assert.equal(existsSync(join(fixture, "dist/xel/icons/material.svg")), true);
 });
-

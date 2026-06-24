@@ -3,28 +3,35 @@ import {
   XDialog,
   XIcon,
   XLabel,
-  XMessage,
+  resolveXelThemeUrl,
   Xel,
   XelProvider,
 } from "xel-solid";
 import { createSignal } from "solid-js";
 
+declare global {
+  interface Window {
+    Xel: typeof Xel;
+  }
+}
+
+window.Xel = Xel;
+
 export function App() {
   const [submitCount, setSubmitCount] = createSignal(0);
   const [resetCount, setResetCount] = createSignal(0);
+  const themeUrl = resolveXelThemeUrl("material", "./xel");
   let dialog: HTMLDialogElement | undefined;
 
   return (
-    <XelProvider theme="material" accentColor="blue" icons={["material"]} locales={["en"]}>
+    <XelProvider theme="material" accentColor="blue" icons={["material"]} assetBaseUrl="./xel">
       <main>
-        <output id="theme-url">{Xel.theme}</output>
+        <output id="theme-url">{themeUrl}</output>
 
         <XButton id="plain-button">
           <XIcon href="#home" />
           <XLabel>Greet</XLabel>
         </XButton>
-
-        <XMessage id="localized-message" href="#setup" />
 
         <form
           id="demo-form"

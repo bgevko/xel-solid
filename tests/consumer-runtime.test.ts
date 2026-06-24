@@ -4,20 +4,18 @@ test("packed consumer gets xel setup, assets, form semantics, and dialog behavio
   await page.goto("/tests/fixtures/consumer/dist/index.html");
 
   await expect(page.locator("x-button#plain-button")).toBeVisible();
-  await expect(page.locator("#theme-url")).toContainText("/xel/themes/material.css");
+  await expect(page.locator("#theme-url")).toContainText("./xel/themes/material.css");
+  await expect.poll(() => page.evaluate(() => window.Xel.theme)).toContain("./xel/themes/material.css");
 
   await page.waitForFunction(async () => {
-    const xel = await import("/node_modules/xel/xel.js");
-    await xel.default.whenThemeReady;
-    await xel.default.whenIconsReady;
-    await xel.default.whenLocalesReady;
-    return Boolean(xel.default.queryIcon("#home"));
+    const xel = window.Xel;
+    await xel.whenThemeReady;
+    await xel.whenIconsReady;
+    return Boolean(xel.queryIcon("#home"));
   });
 
   const themeId = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--theme-id"));
   expect(themeId).toContain("material");
-
-  await expect(page.locator("#localized-message")).not.toHaveText("setup");
 
   await page.locator("#submit-button").click();
   await expect(page.locator("#submit-count")).toHaveText("1");

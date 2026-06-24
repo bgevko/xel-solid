@@ -9,7 +9,7 @@
     "vite": "^8.1.0",
     "vite-plugin-solid": "^2.11.12",
     "xel": "^0.44.0",
-    "xel-solid": "file:./xel-solid-0.0.0.tgz"
+    "xel-solid": "file:./xel-solid-fixture.tgz"
   },
   "devDependencies": {}
 }

@@ -18,10 +18,9 @@ export const xelIconSets = [
   "fluent-outlined",
   "material",
   "material-outlined",
-  "portal",
 ] as const;
 
-export const xelLocales = ["en", "pl"] as const;
+export const xelLocales = [] as const;
 
 export type XelTheme = (typeof xelThemes)[number];
 export type XelIconSet = (typeof xelIconSets)[number];
@@ -84,16 +83,22 @@ export function setupXel(options: XelSetupOptions = {}): XelSetupResult {
     Xel.accentColor = options.accentColor;
   }
 
-  if (options.icons !== null) {
+  if (options.icons !== undefined && options.icons !== null) {
     Xel.icons = iconUrls;
   }
 
-  if (options.locales !== null) {
+  if (options.locales !== undefined && options.locales !== null) {
     Xel.locales = localeUrls;
   }
 
+  const readiness = [
+    themeUrl ? Xel.whenThemeReady : Promise.resolve(),
+    iconUrls.length > 0 ? Xel.whenIconsReady : Promise.resolve(),
+    localeUrls.length > 0 ? Xel.whenLocalesReady : Promise.resolve(),
+  ];
+
   return {
-    ready: Promise.all([Xel.whenThemeReady, Xel.whenIconsReady, Xel.whenLocalesReady]).then(() => undefined),
+    ready: Promise.all(readiness).then(() => undefined),
     themeUrl,
     iconUrls,
     localeUrls,
