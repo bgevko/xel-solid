@@ -1,6 +1,6 @@
 {
   "name": "xel-solid",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "SolidJS bindings for Xel Web Components.",
   "type": "module",
   "license": "MIT",
