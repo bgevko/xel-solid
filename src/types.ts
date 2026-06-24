@@ -49,11 +49,13 @@ export type XelBooleanProps = {
   checked?: Booleanish;
   compact?: Booleanish;
   condensed?: Booleanish;
-  disabled?: Booleanish;
+  disabled?: Booleanish | string;
   ellipsis?: Booleanish;
   expanded?: Booleanish;
   expandable?: Booleanish;
   hidden?: Booleanish;
+  manual?: Booleanish;
+  maximized?: Booleanish;
   mixed?: Booleanish;
   modal?: Booleanish;
   noautocollapse?: Booleanish;
@@ -64,18 +66,33 @@ export type XelBooleanProps = {
   required?: Booleanish;
   selected?: Booleanish;
   spellcheck?: Booleanish;
+  ticks?: Booleanish;
   toggled?: Booleanish;
   togglable?: Booleanish;
+  vertical?: Booleanish;
 };
 
 export type XelCommonProps = {
+  args?: string;
+  autocapitalize?: string | Booleanish;
+  controls?: string;
   href?: string;
   icon?: string;
   id?: string;
+  level?: number | string;
   max?: number | string;
+  maxlength?: number | string;
   min?: number | string;
+  minlength?: number | string;
+  position?: string;
+  prefix?: string;
+  size?: string;
   skin?: string;
   step?: number | string;
+  suffix?: string;
+  timeout?: number | string;
+  tracking?: number | string;
+  type?: string;
   value?: string | number | null;
 };
 
