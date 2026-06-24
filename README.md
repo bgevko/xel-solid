@@ -40,34 +40,3 @@ export function App() {
   );
 }
 ```
-
-`XelProvider` uses Xel's public setup API under the hood. App code should not call `Xel.themeStyleSheet.replaceSync()` directly.
-
-## Non-Vite Apps
-
-If your app does not use Vite, serve these Xel package folders at the same public base URL and pass that base URL to the provider:
-
-- `node_modules/xel/themes`
-- `node_modules/xel/icons`
-
-```tsx
-<XelProvider theme="material" icons={["material"]} assetBaseUrl="/vendor/xel">
-  <App />
-</XelProvider>
-```
-
-Locales are opt-in because the published `xel` package does not currently ship locale files. If your app serves Fluent `.ftl` files, pass their URLs with `locales={["/locales/en.ftl"]}`.
-
-## Usage
-
-```tsx
-import { XButton, XLabel } from "xel-solid";
-
-export function SaveButton() {
-  return (
-    <XButton onClick={() => console.log("save")}>
-      <XLabel>Save</XLabel>
-    </XButton>
-  );
-}
-```
