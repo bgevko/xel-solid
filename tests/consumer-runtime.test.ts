@@ -36,3 +36,16 @@ test("packed consumer gets xel setup, assets, form semantics, and dialog behavio
   await page.locator("#close-dialog").click();
   await expect(page.locator("#demo-dialog")).toHaveJSProperty("open", false);
 });
+
+test("packed consumer can render another packaged theme", async ({ page }) => {
+  await page.goto("/tests/fixtures/consumer/dist/index.html?theme=fluent");
+
+  await expect(page.locator("x-button#plain-button")).toBeVisible();
+  await expect(page.locator("#theme-url")).toContainText("./xel/themes/fluent.css");
+  await expect.poll(() => page.evaluate(() => window.Xel.theme)).toContain("./xel/themes/fluent.css");
+
+  await page.waitForFunction(async () => {
+    await window.Xel.whenThemeReady;
+    return getComputedStyle(document.documentElement).getPropertyValue("--theme-id").includes("fluent");
+  });
+});

@@ -42,6 +42,7 @@ test("packed package installs and builds in a separate Solid consumer", () => {
 
   assert.equal(existsSync(join(fixture, "dist/index.html")), true);
   assert.equal(existsSync(join(fixture, "dist/xel/themes/material.css")), true);
+  assert.equal(existsSync(join(fixture, "dist/xel/themes/fluent.css")), true);
   assert.equal(existsSync(join(fixture, "dist/xel/themes/base.css")), true);
   assert.equal(existsSync(join(fixture, "dist/xel/icons/material.svg")), true);
 });

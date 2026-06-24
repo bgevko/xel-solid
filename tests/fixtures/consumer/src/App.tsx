@@ -20,11 +20,12 @@ window.Xel = Xel;
 export function App() {
   const [submitCount, setSubmitCount] = createSignal(0);
   const [resetCount, setResetCount] = createSignal(0);
-  const themeUrl = resolveXelThemeUrl("material", "./xel");
+  const theme = new URLSearchParams(window.location.search).get("theme") ?? "material";
+  const themeUrl = resolveXelThemeUrl(theme, "./xel");
   let dialog: HTMLDialogElement | undefined;
 
   return (
-    <XelProvider theme="material" accentColor="blue" icons={["material"]} assetBaseUrl="./xel">
+    <XelProvider theme={theme} accentColor="blue" icons={["material"]} assetBaseUrl="./xel">
       <main>
         <output id="theme-url">{themeUrl}</output>
 
