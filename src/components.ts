@@ -1,3 +1,4 @@
+import { createComponent, mergeProps } from "solid-js";
 import type { JSX } from "solid-js";
 import { createXelComponent } from "./createXelComponent";
 import type {
@@ -57,7 +58,44 @@ export const XAccordion: Component<XAccordionProps> = createXelComponent("x-acco
 export const XAvatar: Component<XAvatarProps> = createXelComponent("x-avatar");
 export const XBackdrop: Component<XBackdropProps> = createXelComponent("x-backdrop");
 export const XBox: Component<XBoxProps> = createXelComponent("x-box");
-export const XButton: Component<XButtonProps> = createXelComponent("x-button");
+const BaseXButton: Component<XButtonProps> = createXelComponent("x-button");
+
+function getForm(element: HTMLElement) {
+  return element.closest("form") as HTMLFormElement | null;
+}
+
+export function XButton(props: XButtonProps): JSX.Element {
+  let element: HTMLElement | undefined;
+
+  return createComponent(
+    BaseXButton,
+    mergeProps(props, {
+      ref(node: HTMLElement) {
+        element = node;
+
+        if (typeof props.ref === "function") {
+          props.ref(node);
+        }
+      },
+      onClick(event: MouseEvent & { currentTarget: HTMLElement; target: Element }) {
+        if (typeof props.onClick === "function") {
+          props.onClick(event);
+        }
+
+        if (event.defaultPrevented || !element || props.disabled === true || props.disabled === "") {
+          return;
+        }
+
+        if (props.type === "submit") {
+          getForm(element)?.requestSubmit();
+        }
+        else if (props.type === "reset") {
+          getForm(element)?.reset();
+        }
+      },
+    }),
+  );
+}
 export const XButtons: Component<XButtonsProps> = createXelComponent("x-buttons");
 export const XCard: Component<XCardProps> = createXelComponent("x-card");
 export const XCheckbox: Component<XCheckboxProps> = createXelComponent("x-checkbox");

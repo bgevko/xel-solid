@@ -120,5 +120,5 @@ export function XelProvider(props: XelProviderProps) {
     // clear setup that another mounted subtree may still need.
   });
 
-  return <>{props.children}</>;
+  return props.children;
 }

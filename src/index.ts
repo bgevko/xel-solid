@@ -109,6 +109,7 @@ export {
   xelLocales,
   xelThemes,
 } from "./setup";
+export { XDialog } from "./dialog";
 export type { XelIntrinsicElements } from "./jsx";
 export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types";
 export type {
@@ -172,4 +173,5 @@ export type {
   XelSetupResult,
   XelTheme,
 } from "./setup";
+export type { XDialogProps } from "./dialog";
 export type { XelComponentProps, XelCustomEvent } from "./types";
