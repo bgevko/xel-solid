@@ -10,6 +10,14 @@ bun add solid-js xel xel-solid
 
 `solid-js` and `xel` are peer dependencies. Install them in each app that consumes `xel-solid`.
 
+## Setup
+
+Import one Xel theme in your app entry or global stylesheet:
+
+```css
+@import "xel/themes/material.css";
+```
+
 ## Usage
 
 ```tsx
