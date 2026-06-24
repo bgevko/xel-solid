@@ -99,6 +99,16 @@ export {
   XTitlebar,
   XTooltip,
 } from "./components";
+export {
+  resolveXelIconUrl,
+  resolveXelLocaleUrl,
+  resolveXelThemeUrl,
+  setupXel,
+  XelProvider,
+  xelIconSets,
+  xelLocales,
+  xelThemes,
+} from "./setup";
 export type { XelIntrinsicElements } from "./jsx";
 export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types";
 export type {
@@ -154,4 +164,12 @@ export type {
   XelEventName,
   XelTypedCustomEvent,
 } from "./event-types";
+export type {
+  XelIconSet,
+  XelLocale,
+  XelProviderProps,
+  XelSetupOptions,
+  XelSetupResult,
+  XelTheme,
+} from "./setup";
 export type { XelComponentProps, XelCustomEvent } from "./types";
