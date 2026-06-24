@@ -1,7 +1,6 @@
 import type { Preview } from "storybook-solidjs-vite";
 import { createDecorator } from "storybook-solidjs-vite";
-import { Xel } from "../src";
-import "../src/register";
+import Xel from "xel/xel.js";
 import "./preview.css";
 
 const themeItems = [
@@ -28,8 +27,7 @@ const withXelTheme = createDecorator((Story, context) => {
   document.documentElement.dataset.xelTheme = selectedTheme;
   document.documentElement.style.colorScheme = isDark ? "dark" : "light";
   Xel.theme = `/themes/${selectedTheme}.css`;
-  Xel.icons = ["/icons/fluent.svg", "/icons/material.svg", "/icons/portal.svg"];
-  Xel.locales = ["/locales/en.ftl"];
+  Xel.icons = ["/icons/fluent.svg", "/icons/material.svg"];
 
   return (
     <main class="xel-storybook-shell" data-xel-theme={selectedTheme}>

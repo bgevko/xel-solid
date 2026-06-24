@@ -1,56 +1,3 @@
-import "./register.js";
-
-export {
-  ftl,
-  Xel,
-  XAccordionElement,
-  XAvatarElement,
-  XBackdropElement,
-  XBoxElement,
-  XButtonElement,
-  XButtonsElement,
-  XCardElement,
-  XCheckboxElement,
-  XColorInputElement,
-  XColorPickerElement,
-  XColorSelectElement,
-  XContextMenuElement,
-  XDocTabElement,
-  XDocTabsElement,
-  XDrawerElement,
-  XIconElement,
-  XInputElement,
-  XLabelElement,
-  XMenuElement,
-  XMenubarElement,
-  XMenuItemElement,
-  XMessageElement,
-  XNavElement,
-  XNavItemElement,
-  XNotificationElement,
-  XNumberInputElement,
-  XPagerElement,
-  XPopoverElement,
-  XProgressbarElement,
-  XRadioElement,
-  XRadiosElement,
-  XSelectElement,
-  XShortcutElement,
-  XSliderElement,
-  XStepperElement,
-  XSwatchElement,
-  XSwitchElement,
-  XTabElement,
-  XTabsElement,
-  XTagElement,
-  XTagsElement,
-  XTagsInputElement,
-  XTextEditorElement,
-  XThrobberElement,
-  XTitlebarElement,
-  XTooltipElement,
-} from "./xel.js";
-
 export {
   XAccordion,
   XAvatar,
@@ -64,6 +11,7 @@ export {
   XColorPicker,
   XColorSelect,
   XContextMenu,
+  XDialog,
   XDocTab,
   XDocTabs,
   XDrawer,
@@ -109,9 +57,6 @@ export {
   xelLocales,
   xelThemes,
 } from "./setup.js";
-export { XDialog } from "./dialog.js";
-export type { XelIntrinsicElements } from "./jsx.js";
-export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types.js";
 export type {
   XAccordionProps,
   XAvatarProps,
@@ -125,6 +70,7 @@ export type {
   XColorPickerProps,
   XColorSelectProps,
   XContextMenuProps,
+  XDialogProps,
   XDocTabProps,
   XDocTabsProps,
   XDrawerProps,
@@ -159,12 +105,14 @@ export type {
   XThrobberProps,
   XTitlebarProps,
   XTooltipProps,
-} from "./component-props.js";
+  XelComponentElementMap,
+  XelLocalNameElementMap,
+} from "./types.js";
 export type {
   XelEventDetailMap,
   XelEventName,
   XelTypedCustomEvent,
-} from "./event-types.js";
+} from "./types.js";
 export type {
   XelIconSet,
   XelLocale,
@@ -173,5 +121,4 @@ export type {
   XelSetupResult,
   XelTheme,
 } from "./setup.js";
-export type { XDialogProps } from "./dialog.js";
 export type { XelComponentProps, XelCustomEvent } from "./types.js";

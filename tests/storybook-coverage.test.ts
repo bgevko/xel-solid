@@ -57,16 +57,21 @@ describe("Storybook visual coverage", () => {
     assert.equal(Object.hasOwn(packageJson.devDependencies ?? {}, "storybook-solidjs-vite"), true);
   });
 
-  test("Storybook config serves Xel themes, icons, and locales", () => {
+  test("Storybook config serves Xel themes and icons", () => {
     const mainTs = read(".storybook/main.ts");
+    const previewHeadHtml = read(".storybook/preview-head.html");
+    const previewTsx = read(".storybook/preview.tsx");
 
     assert.equal(mainTs.includes('framework: "storybook-solidjs-vite"'), true);
     assert.equal(mainTs.includes('from: "../node_modules/xel/themes"'), true);
     assert.equal(mainTs.includes('to: "/themes"'), true);
     assert.equal(mainTs.includes('from: "../node_modules/xel/icons"'), true);
     assert.equal(mainTs.includes('to: "/icons"'), true);
-    assert.equal(mainTs.includes('from: "../node_modules/xel/locales"'), true);
-    assert.equal(mainTs.includes('to: "/locales"'), true);
+    assert.equal(mainTs.includes('from: "../node_modules/xel/locales"'), false);
+    assert.equal(mainTs.includes('to: "/locales"'), false);
+    assert.equal(previewHeadHtml.includes("/locales/"), false);
+    assert.equal(previewHeadHtml.includes("portal.svg"), false);
+    assert.equal(previewTsx.includes("portal.svg"), false);
   });
 
   test("toolbar exposes every Xel theme except base.css", () => {

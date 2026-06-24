@@ -19,6 +19,10 @@ function sorted(values: Iterable<string>) {
   return [...values].sort((a, b) => a.localeCompare(b));
 }
 
+function compactSource(source: string) {
+  return source.replace(/\s+/g, "");
+}
+
 function localNameFromImportPath(importPath: string) {
   return importPath.split("/").at(-1)!.replace(/\.js$/, "");
 }
@@ -118,15 +122,6 @@ describe("Xel source coverage", () => {
     }
   });
 
-  test("ships raw custom element JSX declarations in dist", () => {
-    const packageJson = JSON.parse(read("package.json")) as { files: string[] };
-    const indexTs = read("src/index.ts");
-
-    assert.equal(packageJson.files.includes("dist"), true);
-    assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx.js";'), true);
-    assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<XButtonElement>'), true);
-  });
-
   test("package metadata allows public publishing", () => {
     const packageJson = JSON.parse(read("package.json")) as {
       private?: boolean;
@@ -139,37 +134,22 @@ describe("Xel source coverage", () => {
     assert.equal(packageJson.publishConfig?.access, "public");
     assert.deepEqual(packageJson.files, ["dist", "README.md", "LICENSE"]);
     assert.equal(Object.hasOwn(packageJson.exports ?? {}, "."), true);
-    assert.equal(Object.hasOwn(packageJson.exports ?? {}, "./register"), true);
+    assert.equal(Object.hasOwn(packageJson.exports ?? {}, "./register"), false);
+    assert.equal(Object.hasOwn(packageJson.exports ?? {}, "./vite"), true);
   });
 
-  test("re-exports every public non-Solid Xel API from the Xel barrel", () => {
-    const xelJs = readXel("xel.js");
+  test("does not expose native Xel APIs from the Solid root", () => {
     const xelSolidIndex = read("src/index.ts");
-    const xelSolidXel = read("src/xel.ts");
 
-    const xelElementExports = sorted(
-      [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+Element)\} from/g)].map(
-        ([, exportName]) => exportName,
-      ),
-    );
-
-    for (const exportName of xelElementExports) {
-      assert.equal(xelSolidXel.includes(exportName), true, exportName);
-      assert.equal(xelSolidIndex.includes(exportName), true, exportName);
-    }
-
-    assert.equal(xelSolidXel.includes("default as Xel"), true);
-    assert.equal(xelSolidXel.includes("ftl"), true);
-    assert.equal(xelSolidIndex.includes("ftl"), true);
-    assert.equal(xelSolidIndex.includes("Xel"), true);
+    assert.equal(xelSolidIndex.includes('from "./xel.js"'), false);
+    assert.equal(/\bX[A-Za-z0-9]+Element\b/.test(xelSolidIndex), false);
+    assert.equal(/\bftl\b/.test(xelSolidIndex), false);
   });
 
-  test("has exact element class maps for every public wrapper and raw element", () => {
+  test("has exact element class maps for every public wrapper", () => {
     const xelJs = readXel("xel.js");
-    const elementTypesTs = read("src/element-types.ts");
-    const componentPropsTs = read("src/component-props.ts");
+    const typesTs = compactSource(read("src/types.ts"));
     const componentsTs = read("src/components.ts");
-    const jsxTs = read("src/jsx.ts");
 
     const publicExports = [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+Element)\} from "\.\/elements\/([^"]+)\.js";/g)]
       .filter(([, , importPath]) => importPath.startsWith("x-"))
@@ -180,17 +160,26 @@ describe("Xel source coverage", () => {
       }));
 
     for (const item of publicExports) {
-      assert.equal(elementTypesTs.includes(`"${item.localName}": ${item.elementClassName}`), true, item.localName);
-      assert.equal(elementTypesTs.includes(`${item.componentName}: ${item.elementClassName}`), true, item.componentName);
-      assert.equal(componentPropsTs.includes(`XelComponentProps<XelComponentElementMap["${item.componentName}"]>`), true, item.componentName);
-      assert.equal(componentsTs.includes(`Component<${item.componentName}Props>`), true, item.componentName);
-      assert.equal(jsxTs.includes(`"${item.localName}": XelComponentProps<${item.elementClassName}>`), true, item.localName);
+      assert.equal(typesTs.includes(compactSource(`"${item.localName}": ${item.elementClassName}`)), true, item.localName);
+      assert.equal(typesTs.includes(compactSource(`${item.componentName}: ${item.elementClassName}`)), true, item.componentName);
+      assert.equal(
+        typesTs.includes(compactSource(`XelComponentProps<XelComponentElementMap["${item.componentName}"]>`)) ||
+          typesTs.includes(compactSource(`Omit<XelComponentProps<XelComponentElementMap["${item.componentName}"]>`)),
+        true,
+        item.componentName,
+      );
+      assert.equal(
+        componentsTs.includes(`Component<${item.componentName}Props>`) ||
+          componentsTs.includes(`function ${item.componentName}(props: ${item.componentName}Props)`),
+        true,
+        item.componentName,
+      );
     }
   });
 
   test("exports component-specific prop aliases for every wrapper", () => {
     const xelJs = readXel("xel.js");
-    const componentPropsTs = read("src/component-props.ts");
+    const typesTs = read("src/types.ts");
     const indexTs = read("src/index.ts");
 
     const componentNames = [...xelJs.matchAll(/export \{default as (X[A-Za-z0-9]+)Element\} from "\.\/elements\/([^"]+)\.js";/g)]
@@ -198,20 +187,19 @@ describe("Xel source coverage", () => {
       .map(([, componentName]) => componentName);
 
     for (const componentName of componentNames) {
-      assert.equal(componentPropsTs.includes(`export type ${componentName}Props =`), true, componentName);
+      assert.equal(typesTs.includes(`export type ${componentName}Props =`), true, componentName);
       assert.equal(indexTs.includes(`${componentName}Props`), true, componentName);
     }
   });
 
   test("exports typed event detail maps for all supported custom events", () => {
-    const eventTypesTs = read("src/event-types.ts");
     const eventsTs = read("src/events.ts");
     const typesTs = read("src/types.ts");
 
     const eventNames = [...eventsTs.matchAll(/: "([^"]+)"/g)].map(([, eventName]) => eventName);
 
     for (const eventName of eventNames) {
-      assert.equal(eventTypesTs.includes(`${eventName}:`), true, eventName);
+      assert.equal(typesTs.includes(`${eventName}:`), true, eventName);
     }
 
     assert.equal(typesTs.includes("XelEventDetailMap"), true);

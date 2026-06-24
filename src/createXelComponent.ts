@@ -1,5 +1,11 @@
 import type { JSX } from "solid-js";
-import { createComponent, createRenderEffect, mergeProps, onCleanup, splitProps } from "solid-js";
+import {
+  createComponent,
+  createRenderEffect,
+  mergeProps,
+  onCleanup,
+  splitProps,
+} from "solid-js";
 import { Dynamic } from "solid-js/web";
 import { bindXelEvents, eventPropNames } from "./events.js";
 import type { XelComponentProps } from "./types.js";
@@ -78,8 +84,7 @@ function assignAttributes<TElement extends HTMLElement>(
 
     if (value === false || value === null || value === undefined) {
       element.removeAttribute(propName);
-    }
-    else {
+    } else {
       element.setAttribute(propName, String(value));
     }
   }
@@ -94,26 +99,29 @@ function assignBooleanAttributes<TElement extends HTMLElement>(
 
     if (value === false || value === null || value === undefined) {
       element.removeAttribute(propName);
-    }
-    else if (value === true || value === "") {
+    } else if (value === true || value === "") {
       element.setAttribute(propName, "");
-    }
-    else {
+    } else {
       element.setAttribute(propName, String(value));
     }
   }
 }
 
-export function createXelComponent<TElement extends HTMLElement>(localName: string) {
-  return function XelComponent(props: XelComponentProps<TElement>): JSX.Element {
+export function createXelComponent<TElement extends HTMLElement>(
+  localName: string,
+) {
+  return function XelComponent(
+    props: XelComponentProps<TElement>,
+  ): JSX.Element {
     let element: TElement | undefined;
-    const [local, eventProps, booleanProps, attributeProps, others] = splitProps(
-      props,
-      ["children", "prop", "properties", "ref"],
-      eventPropNames,
-      booleanPropNames,
-      attributePropNames,
-    );
+    const [local, eventProps, booleanProps, attributeProps, others] =
+      splitProps(
+        props,
+        ["children", "prop", "properties", "ref"],
+        eventPropNames,
+        booleanPropNames,
+        attributePropNames,
+      );
 
     createRenderEffect(() => {
       const properties = { ...local.properties, ...local.prop };

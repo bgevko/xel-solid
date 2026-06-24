@@ -4,10 +4,10 @@ import {
   XIcon,
   XLabel,
   resolveXelThemeUrl,
-  Xel,
   XelProvider,
 } from "xel-solid";
 import { createSignal } from "solid-js";
+import Xel from "xel/xel.js";
 
 declare global {
   interface Window {

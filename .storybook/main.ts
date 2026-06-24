@@ -7,7 +7,6 @@ const config: StorybookConfig = {
   staticDirs: [
     { from: "../node_modules/xel/themes", to: "/themes" },
     { from: "../node_modules/xel/icons", to: "/icons" },
-    { from: "../node_modules/xel/locales", to: "/locales" },
   ],
 };
 
