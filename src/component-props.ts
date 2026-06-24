@@ -1,13 +1,12 @@
-import type { XelComponentElementMap } from "./element-types";
-import type { XelComponentProps } from "./types";
-import type { XButtonElement } from "./xel";
+import type { XelComponentElementMap } from "./element-types.js";
+import type { XelComponentProps } from "./types.js";
 
 export type XAccordionProps = XelComponentProps<XelComponentElementMap["XAccordion"]>;
 export type XAvatarProps = XelComponentProps<XelComponentElementMap["XAvatar"]>;
 export type XBackdropProps = XelComponentProps<XelComponentElementMap["XBackdrop"]>;
 export type XBoxProps = XelComponentProps<XelComponentElementMap["XBox"]>;
 export type XButtonType = "button" | "submit" | "reset";
-export type XButtonProps = Omit<XelComponentProps<XButtonElement>, "type"> & {
+export type XButtonProps = Omit<XelComponentProps<XelComponentElementMap["XButton"]>, "type"> & {
   type?: XButtonType;
 };
 export type XButtonsProps = XelComponentProps<XelComponentElementMap["XButtons"]>;
@@ -51,4 +50,4 @@ export type XTextEditorProps = XelComponentProps<XelComponentElementMap["XTextEd
 export type XThrobberProps = XelComponentProps<XelComponentElementMap["XThrobber"]>;
 export type XTitlebarProps = XelComponentProps<XelComponentElementMap["XTitlebar"]>;
 export type XTooltipProps = XelComponentProps<XelComponentElementMap["XTooltip"]>;
-export type { XDialogProps } from "./dialog";
+export type { XDialogProps } from "./dialog.js";

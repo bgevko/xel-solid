@@ -1,2 +1,1 @@
-import "xel";
-
+import "xel/xel.js";

@@ -55,7 +55,7 @@
     "test": "bun run ts && node --test tests/coverage.test.ts && node --test tests/storybook-coverage.test.ts && bun run storybook:typecheck && node --test tests/consumer-package.test.ts && bun run test:runtime",
     "test:runtime": "node node_modules/@playwright/test/cli.js test --config=playwright.config.cjs",
     "ts": "tsc -p tsconfig.json --noEmit",
-    "prepack": "bun run build"
+    "prepack": "bun run clean && bun run build"
   },
   "peerDependencies": {
     "solid-js": "^1.9.0",

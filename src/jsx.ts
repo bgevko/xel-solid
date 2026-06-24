@@ -1,5 +1,5 @@
 import type { JSX } from "solid-js";
-import type { XelComponentProps } from "./types";
+import type { XelComponentProps } from "./types.js";
 import type {
   XAccordionElement,
   XAvatarElement,
@@ -47,7 +47,7 @@ import type {
   XThrobberElement,
   XTitlebarElement,
   XTooltipElement,
-} from "./xel";
+} from "./xel.js";
 
 declare module "solid-js" {
   namespace JSX {

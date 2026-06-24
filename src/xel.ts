@@ -47,4 +47,4 @@ export {
   XThrobberElement,
   XTitlebarElement,
   XTooltipElement,
-} from "xel";
+} from "xel/xel.js";

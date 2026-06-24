@@ -45,7 +45,7 @@ import type {
   XThrobberElement,
   XTitlebarElement,
   XTooltipElement,
-} from "./xel";
+} from "./xel.js";
 
 export type XelLocalNameElementMap = {
   "x-accordion": XAccordionElement;

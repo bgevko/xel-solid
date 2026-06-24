@@ -60,3 +60,8 @@ declare module "xel" {
 
   export default Xel;
 }
+
+declare module "xel/xel.js" {
+  export * from "xel";
+  export { default } from "xel";
+}

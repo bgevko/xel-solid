@@ -1,6 +1,6 @@
 import { createEffect, onCleanup, type JSX } from "solid-js";
-import { Xel } from "./xel";
-import "./register";
+import { Xel } from "./xel.js";
+import "./register.js";
 
 export const xelThemes = [
   "adwaita",

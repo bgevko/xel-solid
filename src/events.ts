@@ -1,4 +1,4 @@
-import type { XelComponentProps } from "./types";
+import type { XelComponentProps } from "./types.js";
 
 export const xelEventPropToEventName = {
   onAdd: "add",

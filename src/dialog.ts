@@ -1,7 +1,7 @@
 import type { JSX } from "solid-js";
 import { createComponent, mergeProps, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import "./register";
+import "./register.js";
 
 export type XDialogProps = JSX.DialogHtmlAttributes<HTMLDialogElement> & {
   ref?: HTMLDialogElement | ((element: HTMLDialogElement) => void);

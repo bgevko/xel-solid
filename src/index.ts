@@ -1,4 +1,4 @@
-import "./register";
+import "./register.js";
 
 export {
   ftl,
@@ -49,7 +49,7 @@ export {
   XThrobberElement,
   XTitlebarElement,
   XTooltipElement,
-} from "./xel";
+} from "./xel.js";
 
 export {
   XAccordion,
@@ -98,7 +98,7 @@ export {
   XThrobber,
   XTitlebar,
   XTooltip,
-} from "./components";
+} from "./components.js";
 export {
   resolveXelIconUrl,
   resolveXelLocaleUrl,
@@ -108,10 +108,10 @@ export {
   xelIconSets,
   xelLocales,
   xelThemes,
-} from "./setup";
-export { XDialog } from "./dialog";
-export type { XelIntrinsicElements } from "./jsx";
-export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types";
+} from "./setup.js";
+export { XDialog } from "./dialog.js";
+export type { XelIntrinsicElements } from "./jsx.js";
+export type { XelComponentElementMap, XelLocalNameElementMap } from "./element-types.js";
 export type {
   XAccordionProps,
   XAvatarProps,
@@ -159,12 +159,12 @@ export type {
   XThrobberProps,
   XTitlebarProps,
   XTooltipProps,
-} from "./component-props";
+} from "./component-props.js";
 export type {
   XelEventDetailMap,
   XelEventName,
   XelTypedCustomEvent,
-} from "./event-types";
+} from "./event-types.js";
 export type {
   XelIconSet,
   XelLocale,
@@ -172,6 +172,6 @@ export type {
   XelSetupOptions,
   XelSetupResult,
   XelTheme,
-} from "./setup";
-export type { XDialogProps } from "./dialog";
-export type { XelComponentProps, XelCustomEvent } from "./types";
+} from "./setup.js";
+export type { XDialogProps } from "./dialog.js";
+export type { XelComponentProps, XelCustomEvent } from "./types.js";

@@ -123,7 +123,7 @@ describe("Xel source coverage", () => {
     const indexTs = read("src/index.ts");
 
     assert.equal(packageJson.files.includes("dist"), true);
-    assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx";'), true);
+    assert.equal(indexTs.includes('export type { XelIntrinsicElements } from "./jsx.js";'), true);
     assert.equal(read("src/jsx.ts").includes('"x-button": XelComponentProps<XButtonElement>'), true);
   });
 

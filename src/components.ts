@@ -1,6 +1,6 @@
 import { createComponent, mergeProps } from "solid-js";
 import type { JSX } from "solid-js";
-import { createXelComponent } from "./createXelComponent";
+import { createXelComponent } from "./createXelComponent.js";
 import type {
   XAccordionProps,
   XAvatarProps,
@@ -48,9 +48,9 @@ import type {
   XThrobberProps,
   XTitlebarProps,
   XTooltipProps,
-} from "./component-props";
+} from "./component-props.js";
 
-import "xel";
+import "xel/xel.js";
 
 type Component<TProps> = (props: TProps) => JSX.Element;
 

@@ -1,5 +1,5 @@
 import type { JSX } from "solid-js";
-import type { XelEventDetailMap, XelEventName, XelTypedCustomEvent } from "./event-types";
+import type { XelEventDetailMap, XelEventName, XelTypedCustomEvent } from "./event-types.js";
 
 export type Booleanish = boolean | "" | undefined | null;
 

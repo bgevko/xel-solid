@@ -1,8 +1,8 @@
 import type { JSX } from "solid-js";
 import { createComponent, createRenderEffect, mergeProps, onCleanup, splitProps } from "solid-js";
 import { Dynamic } from "solid-js/web";
-import { bindXelEvents, eventPropNames } from "./events";
-import type { XelComponentProps } from "./types";
+import { bindXelEvents, eventPropNames } from "./events.js";
+import type { XelComponentProps } from "./types.js";
 
 const booleanPropNames = [
   "alpha",
