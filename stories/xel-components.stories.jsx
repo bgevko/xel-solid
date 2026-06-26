@@ -1,4 +1,3 @@
-import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import {
   XAccordion,
   XAvatar,
@@ -59,13 +58,11 @@ const meta = {
       },
     },
   },
-} satisfies Meta;
+};
 
 export default meta;
 
-type Story = StoryObj;
-
-export const ProviderSetup: Story = {
+export const ProviderSetup = {
   name: "Provider setup",
   tags: ["visual"],
   render: () => (
@@ -182,7 +179,7 @@ function ColorMenu() {
   );
 }
 
-export const Accordion: Story = {
+export const Accordion = {
   name: "Accordion",
   tags: ["visual"],
   render: () => (
@@ -245,7 +242,7 @@ export const Accordion: Story = {
   ),
 };
 
-export const Avatar: Story = {
+export const Avatar = {
   name: "Avatar",
   tags: ["visual"],
   render: () => (
@@ -299,7 +296,7 @@ export const Avatar: Story = {
   ),
 };
 
-export const Backdrop: Story = {
+export const Backdrop = {
   name: "Backdrop",
   tags: ["visual"],
   render: () => (
@@ -312,7 +309,7 @@ export const Backdrop: Story = {
   ),
 };
 
-export const Box: Story = {
+export const Box = {
   name: "Box",
   tags: ["visual"],
   render: () => (
@@ -349,7 +346,7 @@ export const Box: Story = {
   ),
 };
 
-export const Button: Story = {
+export const Button = {
   name: "Button",
   tags: ["visual"],
   render: () => (
@@ -473,7 +470,7 @@ export const Button: Story = {
   ),
 };
 
-export const Buttons: Story = {
+export const Buttons = {
   name: "Buttons",
   tags: ["visual"],
   render: () => (
@@ -588,7 +585,7 @@ export const Buttons: Story = {
   ),
 };
 
-export const Card: Story = {
+export const Card = {
   name: "Card",
   tags: ["visual"],
   render: () => (
@@ -640,7 +637,7 @@ export const Card: Story = {
   ),
 };
 
-export const Checkbox: Story = {
+export const Checkbox = {
   name: "Checkbox",
   tags: ["visual"],
   render: () => (
@@ -672,7 +669,7 @@ export const Checkbox: Story = {
   ),
 };
 
-export const ColorInput: Story = {
+export const ColorInput = {
   name: "ColorInput",
   tags: ["visual"],
   render: () => (
@@ -687,7 +684,7 @@ export const ColorInput: Story = {
   ),
 };
 
-export const ColorPicker: Story = {
+export const ColorPicker = {
   name: "ColorPicker",
   tags: ["visual"],
   render: () => (
@@ -701,7 +698,7 @@ export const ColorPicker: Story = {
   ),
 };
 
-export const ColorSelect: Story = {
+export const ColorSelect = {
   name: "ColorSelect",
   tags: ["visual"],
   render: () => (
@@ -718,7 +715,7 @@ export const ColorSelect: Story = {
   ),
 };
 
-export const ContextMenu: Story = {
+export const ContextMenu = {
   name: "ContextMenu",
   tags: ["visual"],
   render: () => (
@@ -790,7 +787,7 @@ export const ContextMenu: Story = {
   ),
 };
 
-export const DocTab: Story = {
+export const DocTab = {
   name: "DocTab",
   tags: ["visual"],
   render: () => (
@@ -807,7 +804,7 @@ export const DocTab: Story = {
   ),
 };
 
-export const DocTabs: Story = {
+export const DocTabs = {
   name: "DocTabs",
   tags: ["visual"],
   render: () => (
@@ -842,7 +839,7 @@ export const DocTabs: Story = {
   ),
 };
 
-export const Drawer: Story = {
+export const Drawer = {
   name: "Drawer",
   tags: ["visual"],
   render: () => (
@@ -894,7 +891,7 @@ export const Drawer: Story = {
   ),
 };
 
-export const Dialog: Story = {
+export const Dialog = {
   name: "Dialog",
   tags: ["visual"],
   render: () => (
@@ -909,7 +906,7 @@ export const Dialog: Story = {
   ),
 };
 
-export const Icon: Story = {
+export const Icon = {
   name: "Icon",
   tags: ["visual"],
   render: () => (
@@ -928,7 +925,7 @@ export const Icon: Story = {
   ),
 };
 
-export const Input: Story = {
+export const Input = {
   name: "Input",
   tags: ["visual"],
   render: () => (
@@ -985,7 +982,7 @@ export const Input: Story = {
   ),
 };
 
-export const Label: Story = {
+export const Label = {
   name: "Label",
   tags: ["visual"],
   render: () => (
@@ -1010,7 +1007,7 @@ export const Label: Story = {
   ),
 };
 
-export const Menu: Story = {
+export const Menu = {
   name: "Menu",
   tags: ["visual"],
   render: () => (
@@ -1047,7 +1044,7 @@ export const Menu: Story = {
   ),
 };
 
-export const Menubar: Story = {
+export const Menubar = {
   name: "Menubar",
   tags: ["visual"],
   render: () => (
@@ -1102,7 +1099,7 @@ export const Menubar: Story = {
   ),
 };
 
-export const MenuItem: Story = {
+export const MenuItem = {
   name: "MenuItem",
   tags: ["visual"],
   render: () => (
@@ -1150,7 +1147,7 @@ export const MenuItem: Story = {
   ),
 };
 
-export const Message: Story = {
+export const Message = {
   name: "Message",
   tags: ["visual"],
   render: () => (
@@ -1166,7 +1163,7 @@ export const Message: Story = {
   ),
 };
 
-export const Nav: Story = {
+export const Nav = {
   name: "Nav",
   tags: ["visual"],
   render: () => (
@@ -1233,7 +1230,7 @@ export const Nav: Story = {
   ),
 };
 
-export const NavItem: Story = {
+export const NavItem = {
   name: "NavItem",
   tags: ["visual"],
   render: () => (
@@ -1291,7 +1288,7 @@ export const NavItem: Story = {
   ),
 };
 
-export const Notification: Story = {
+export const Notification = {
   name: "Notification",
   tags: ["visual"],
   render: () => (
@@ -1320,7 +1317,7 @@ export const Notification: Story = {
   ),
 };
 
-export const NumberInput: Story = {
+export const NumberInput = {
   name: "NumberInput",
   tags: ["visual"],
   render: () => (
@@ -1366,7 +1363,7 @@ export const NumberInput: Story = {
   ),
 };
 
-export const Pager: Story = {
+export const Pager = {
   name: "Pager",
   tags: ["visual"],
   render: () => (
@@ -1382,7 +1379,7 @@ export const Pager: Story = {
   ),
 };
 
-export const Popover: Story = {
+export const Popover = {
   name: "Popover",
   tags: ["visual"],
   render: () => (
@@ -1405,7 +1402,7 @@ export const Popover: Story = {
   ),
 };
 
-export const Progressbar: Story = {
+export const Progressbar = {
   name: "Progressbar",
   tags: ["visual"],
   render: () => (
@@ -1424,7 +1421,7 @@ export const Progressbar: Story = {
   ),
 };
 
-export const Radio: Story = {
+export const Radio = {
   name: "Radio",
   tags: ["visual"],
   render: () => (
@@ -1456,7 +1453,7 @@ export const Radio: Story = {
   ),
 };
 
-export const Radios: Story = {
+export const Radios = {
   name: "Radios",
   tags: ["visual"],
   render: () => (
@@ -1489,7 +1486,7 @@ export const Radios: Story = {
   ),
 };
 
-export const Select: Story = {
+export const Select = {
   name: "Select",
   tags: ["visual"],
   render: () => (
@@ -1611,7 +1608,7 @@ export const Select: Story = {
   ),
 };
 
-export const Shortcut: Story = {
+export const Shortcut = {
   name: "Shortcut",
   tags: ["visual"],
   render: () => (
@@ -1624,7 +1621,7 @@ export const Shortcut: Story = {
   ),
 };
 
-export const Slider: Story = {
+export const Slider = {
   name: "Slider",
   tags: ["visual"],
   render: () => (
@@ -1651,7 +1648,7 @@ export const Slider: Story = {
   ),
 };
 
-export const Stepper: Story = {
+export const Stepper = {
   name: "Stepper",
   tags: ["visual"],
   render: () => (
@@ -1666,7 +1663,7 @@ export const Stepper: Story = {
   ),
 };
 
-export const Swatch: Story = {
+export const Swatch = {
   name: "Swatch",
   tags: ["visual"],
   render: () => (
@@ -1686,7 +1683,7 @@ export const Swatch: Story = {
   ),
 };
 
-export const Switch: Story = {
+export const Switch = {
   name: "Switch",
   tags: ["visual"],
   render: () => (
@@ -1719,7 +1716,7 @@ export const Switch: Story = {
   ),
 };
 
-export const Tab: Story = {
+export const Tab = {
   name: "Tab",
   tags: ["visual"],
   render: () => (
@@ -1738,7 +1735,7 @@ export const Tab: Story = {
   ),
 };
 
-export const Tabs: Story = {
+export const Tabs = {
   name: "Tabs",
   tags: ["visual"],
   render: () => (
@@ -1782,7 +1779,7 @@ export const Tabs: Story = {
   ),
 };
 
-export const Tag: Story = {
+export const Tag = {
   name: "Tag",
   tags: ["visual"],
   render: () => (
@@ -1825,7 +1822,7 @@ export const Tag: Story = {
   ),
 };
 
-export const Tags: Story = {
+export const Tags = {
   name: "Tags",
   tags: ["visual"],
   render: () => (
@@ -1889,7 +1886,7 @@ export const Tags: Story = {
   ),
 };
 
-export const TagsInput: Story = {
+export const TagsInput = {
   name: "TagsInput",
   tags: ["visual"],
   render: () => (
@@ -1962,7 +1959,7 @@ export const TagsInput: Story = {
   ),
 };
 
-export const TextEditor: Story = {
+export const TextEditor = {
   name: "TextEditor",
   tags: ["visual"],
   render: () => (
@@ -1983,7 +1980,7 @@ export const TextEditor: Story = {
   ),
 };
 
-export const Throbber: Story = {
+export const Throbber = {
   name: "Throbber",
   tags: ["visual"],
   render: () => (
@@ -2000,7 +1997,7 @@ export const Throbber: Story = {
   ),
 };
 
-export const Titlebar: Story = {
+export const Titlebar = {
   name: "Titlebar",
   tags: ["visual"],
   render: () => (
@@ -2041,7 +2038,7 @@ export const Titlebar: Story = {
   ),
 };
 
-export const Tooltip: Story = {
+export const Tooltip = {
   name: "Tooltip",
   tags: ["visual"],
   render: () => (

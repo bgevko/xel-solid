@@ -41,7 +41,7 @@ function componentNameFromLocalName(localName: string) {
 }
 
 describe("Storybook visual coverage", () => {
-  test("package scripts include Storybook build and typecheck", () => {
+  test("package scripts include Storybook commands", () => {
     const packageJson = JSON.parse(read("package.json")) as {
       scripts?: Record<string, string>;
       devDependencies?: Record<string, string>;
@@ -49,9 +49,7 @@ describe("Storybook visual coverage", () => {
 
     assert.equal(packageJson.scripts?.storybook, "storybook dev -p 6006");
     assert.equal(packageJson.scripts?.["storybook:build"], "storybook build");
-    assert.equal(packageJson.scripts?.["storybook:typecheck"], "tsc -p tsconfig.storybook.json --noEmit");
     assert.equal(packageJson.scripts?.test?.includes("node --test tests/storybook-coverage.test.ts"), true);
-    assert.equal(packageJson.scripts?.test?.includes("bun run storybook:typecheck"), true);
     assert.equal(Object.hasOwn(packageJson.devDependencies ?? {}, "storybook"), true);
     assert.equal(Object.hasOwn(packageJson.devDependencies ?? {}, "@storybook/addon-docs"), true);
     assert.equal(Object.hasOwn(packageJson.devDependencies ?? {}, "storybook-solidjs-vite"), true);
@@ -88,7 +86,7 @@ describe("Storybook visual coverage", () => {
 
   test("every public Xel component has one visual Solid story", () => {
     const xelJs = readXel("xel.js");
-    const storiesTsx = read("stories/xel-components.stories.tsx");
+    const storiesJsx = read("stories/xel-components.stories.jsx");
 
     const publicLocalNames = [...xelJs.matchAll(/export \{default as X[A-Za-z0-9]+Element\} from "\.\/elements\/([^"]+)\.js";/g)]
       .filter(([, importPath]) => importPath.startsWith("x-"))
@@ -98,21 +96,21 @@ describe("Storybook visual coverage", () => {
       const componentName = `X${componentNameFromLocalName(localName)}`;
       const storyName = componentName.replace(/^X/, "");
 
-      assert.equal(storiesTsx.includes(`${componentName},`), true, componentName);
-      assert.equal(storiesTsx.includes(`export const ${storyName}: Story =`), true, storyName);
-      assert.equal(storiesTsx.includes(`name: "${storyName}"`), true, storyName);
-      assert.equal(storiesTsx.includes(`tags: ["visual"]`), true, storyName);
+      assert.equal(storiesJsx.includes(`${componentName},`), true, componentName);
+      assert.equal(storiesJsx.includes(`export const ${storyName} =`), true, storyName);
+      assert.equal(storiesJsx.includes(`name: "${storyName}"`), true, storyName);
+      assert.equal(storiesJsx.includes(`tags: ["visual"]`), true, storyName);
     }
   });
 
   test("Storybook covers Solid setup and native dialog surfaces", () => {
-    const storiesTsx = read("stories/xel-components.stories.tsx");
+    const storiesJsx = read("stories/xel-components.stories.jsx");
 
-    assert.match(storiesTsx, /export const ProviderSetup: Story =/);
-    assert.match(storiesTsx, /name: "Provider setup"/);
-    assert.match(storiesTsx, /<XelProvider/);
-    assert.match(storiesTsx, /export const Dialog: Story =/);
-    assert.match(storiesTsx, /name: "Dialog"/);
-    assert.match(storiesTsx, /<XDialog open/);
+    assert.match(storiesJsx, /export const ProviderSetup =/);
+    assert.match(storiesJsx, /name: "Provider setup"/);
+    assert.match(storiesJsx, /<XelProvider/);
+    assert.match(storiesJsx, /export const Dialog =/);
+    assert.match(storiesJsx, /name: "Dialog"/);
+    assert.match(storiesJsx, /<XDialog open/);
   });
 });

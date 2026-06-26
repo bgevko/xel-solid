@@ -46,8 +46,7 @@
     "clean": "rm -rf dist",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:typecheck": "tsc -p tsconfig.storybook.json --noEmit",
-    "test": "bun run ts && node --test tests/coverage.test.ts && node --test tests/storybook-coverage.test.ts && bun run storybook:typecheck && node --test tests/consumer-package.test.ts && bun run test:runtime",
+    "test": "bun run ts && node --test tests/coverage.test.ts && node --test tests/storybook-coverage.test.ts && node --test tests/consumer-package.test.ts && bun run test:runtime",
     "test:runtime": "node node_modules/@playwright/test/cli.js test --config=playwright.config.cjs",
     "ts": "tsc -p tsconfig.json --noEmit",
     "prepack": "bun run clean && bun run build"

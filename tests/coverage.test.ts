@@ -164,6 +164,7 @@ describe("Xel source coverage", () => {
       assert.equal(typesTs.includes(compactSource(`${item.componentName}: ${item.elementClassName}`)), true, item.componentName);
       assert.equal(
         typesTs.includes(compactSource(`XelComponentProps<XelComponentElementMap["${item.componentName}"]>`)) ||
+          typesTs.includes(compactSource(`XelComponentPropsWith<XelComponentElementMap["${item.componentName}"],`)) ||
           typesTs.includes(compactSource(`Omit<XelComponentProps<XelComponentElementMap["${item.componentName}"]>`)),
         true,
         item.componentName,

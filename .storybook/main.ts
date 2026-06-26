@@ -2,7 +2,7 @@ import type { StorybookConfig } from "storybook-solidjs-vite";
 import tailwindcss from "@tailwindcss/vite";
 
 const config: StorybookConfig = {
-  stories: ["../stories/**/*.stories.@(ts|tsx)"],
+  stories: ["../stories/**/*.stories.@(js|jsx)"],
   addons: ["@storybook/addon-docs"],
   framework: "storybook-solidjs-vite",
   staticDirs: [
