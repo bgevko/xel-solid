@@ -30,7 +30,10 @@ const withXelTheme = createDecorator((Story, context) => {
   Xel.icons = ["/icons/fluent.svg", "/icons/material.svg"];
 
   return (
-    <main class="xel-storybook-shell" data-xel-theme={selectedTheme}>
+    <main
+      class="box-border grid min-h-[min(520px,calc(100vh-96px))] min-w-[min(920px,calc(100vw-48px))] place-items-center p-8"
+      data-xel-theme={selectedTheme}
+    >
       <Story />
     </main>
   );

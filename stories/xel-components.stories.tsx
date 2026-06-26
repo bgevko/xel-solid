@@ -1,4 +1,3 @@
-import type { JSX } from "solid-js";
 import type { Meta, StoryObj } from "storybook-solidjs-vite";
 import {
   XAccordion,
@@ -66,33 +65,17 @@ export default meta;
 
 type Story = StoryObj;
 
-function Frame(props: { children: JSX.Element }) {
-  return <section class="xel-story-frame">{props.children}</section>;
-}
-
-function Row(props: { children: JSX.Element }) {
-  return <div class="xel-story-row">{props.children}</div>;
-}
-
-function Stack(props: { children: JSX.Element }) {
-  return <div class="xel-story-stack">{props.children}</div>;
-}
-
-function Surface(props: { children: JSX.Element }) {
-  return <div class="xel-story-surface">{props.children}</div>;
-}
-
 export const ProviderSetup: Story = {
   name: "Provider setup",
   tags: ["visual"],
   render: () => (
     <XelProvider theme="material" accentColor="blue" icons={["material"]} assetBaseUrl="">
-      <Frame>
+      <section class="grid items-start justify-items-start gap-[18px]">
         <XButton>
           <XIcon href="#home" />
           <XLabel>Provider setup</XLabel>
         </XButton>
-      </Frame>
+      </section>
     </XelProvider>
   ),
 };
@@ -203,8 +186,8 @@ export const Accordion: Story = {
   name: "Accordion",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XAccordion>
           <header>
             <XLabel>Header</XLabel>
@@ -257,8 +240,8 @@ export const Accordion: Story = {
             </XSlider>
           </XAccordion>
         </div>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -266,9 +249,9 @@ export const Avatar: Story = {
   name: "Avatar",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
-        <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
+        <div class="flex flex-wrap items-center gap-3">
           <XAvatar>
             <img src="https://xel-toolkit.org/favicon.svg" />
           </XAvatar>
@@ -281,7 +264,7 @@ export const Avatar: Story = {
           <XAvatar style={{ color: "white", "background-color": "#e16daa" }}>
             <XIcon href="#person" />
           </XAvatar>
-        </Row>
+        </div>
         <XBox style={{ gap: "6px" }}>
           <XAvatar size="small">
             <img src="https://xel-toolkit.org/favicon.svg" />
@@ -311,8 +294,8 @@ export const Avatar: Story = {
             <XLabel>AB</XLabel>
           </XAvatar>
         </XBox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -320,12 +303,12 @@ export const Backdrop: Story = {
   name: "Backdrop",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Surface>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="box-border grid min-w-80 gap-3 rounded-lg border border-[color-mix(in_srgb,CanvasText_18%,transparent)] p-4">
         <XBackdrop opened />
         <XLabel>Backdrop layer</XLabel>
-      </Surface>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -333,8 +316,8 @@ export const Box: Story = {
   name: "Box",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XBox style={{ gap: "10px" }}>
           <XIcon href="#mail" />
           <XIcon href="#delete" />
@@ -361,8 +344,8 @@ export const Box: Story = {
             <XLabel>Button</XLabel>
           </XButton>
         </XBox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -370,9 +353,9 @@ export const Button: Story = {
   name: "Button",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
-        <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
+        <div class="flex flex-wrap items-center gap-3">
           <XButton>
             <XLabel>Button</XLabel>
           </XButton>
@@ -396,8 +379,8 @@ export const Button: Story = {
           <XButton style={{ width: "73px" }}>
             <XLabel>More options</XLabel>
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton disabled>
             <XIcon href="#delete" />
             <XLabel>Button</XLabel>
@@ -418,8 +401,8 @@ export const Button: Story = {
             <XIcon href="#home" />
             <XLabel>Button</XLabel>
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton>
             <XIcon href="#settings" />
             <EditMenu />
@@ -434,8 +417,8 @@ export const Button: Story = {
             <XLabel>Button</XLabel>
             <XNotification>You clicked the button.</XNotification>
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton skin="flat">
             <XIcon href="#home" />
             <XLabel>Button</XLabel>
@@ -448,8 +431,8 @@ export const Button: Story = {
             <XIcon href="#home" />
             <XLabel>Button</XLabel>
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton skin="recessed">
             <XLabel>Button</XLabel>
           </XButton>
@@ -459,8 +442,8 @@ export const Button: Story = {
           <XButton skin="recessed" disabled>
             <XLabel>Button</XLabel>
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton skin="dock">
             <XIcon href="#home" />
           </XButton>
@@ -470,8 +453,8 @@ export const Button: Story = {
           <XButton skin="dock" disabled>
             <XIcon href="#home" />
           </XButton>
-        </Row>
-        <Row>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
           <XButton size="small" togglable>
             <XIcon href="#settings" />
             <XLabel>Small</XLabel>
@@ -484,9 +467,9 @@ export const Button: Story = {
             <XIcon href="#settings" />
             <XLabel>Large</XLabel>
           </XButton>
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -494,8 +477,8 @@ export const Buttons: Story = {
   name: "Buttons",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XButtons tracking="-1">
           <XButton>
             <XIcon href="#home" />
@@ -600,8 +583,8 @@ export const Buttons: Story = {
             <XIcon href="#bookmark" />
           </XButton>
         </XButtons>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -609,8 +592,8 @@ export const Card: Story = {
   name: "Card",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XCard />
         <XCard>
           <h3>Card title</h3>
@@ -652,8 +635,8 @@ export const Card: Story = {
             </tbody>
           </table>
         </XCard>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -661,8 +644,8 @@ export const Checkbox: Story = {
   name: "Checkbox",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XCheckbox />
         <XCheckbox toggled />
         <XCheckbox mixed />
@@ -679,13 +662,13 @@ export const Checkbox: Story = {
             Description with a <a href="#">link</a>.
           </XLabel>
         </XCheckbox>
-        <Row>
+        <div class="flex flex-wrap items-center gap-3">
           <XCheckbox size="small" />
           <XCheckbox />
           <XCheckbox size="large" />
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -693,14 +676,14 @@ export const ColorInput: Story = {
   name: "ColorInput",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XColorInput value="#bada55" />
         <XColorInput value="#bada55aa" alpha />
         <XColorInput value="#bada55" size="small" />
         <XColorInput value="#bada55" disabled />
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -708,13 +691,13 @@ export const ColorPicker: Story = {
   name: "ColorPicker",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XColorPicker value="#bada55" />
         <XColorPicker value="#bada55" alpha />
         <XColorPicker value="#bada55" />
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -722,16 +705,16 @@ export const ColorSelect: Story = {
   name: "ColorSelect",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XColorSelect value="#bada55" />
         <XColorSelect value="#bada55aa" alpha />
         <XColorSelect value="color(display-p3 1 0 0)" />
         <XColorSelect value="#bada55" disabled />
         <XColorSelect value="#bada55" size="small" />
         <XColorSelect value="#bada55" size="large" />
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -739,8 +722,8 @@ export const ContextMenu: Story = {
   name: "ContextMenu",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XCard>
           <XLabel>Right-click to open the context menu.</XLabel>
           <XContextMenu>
@@ -802,8 +785,8 @@ export const ContextMenu: Story = {
             </XMenu>
           </XContextMenu>
         </XCard>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -811,7 +794,7 @@ export const DocTab: Story = {
   name: "DocTab",
   tags: ["visual"],
   render: () => (
-    <Frame>
+    <section class="grid items-start justify-items-start gap-[18px]">
       <XDocTabs>
         <XDocTab selected>
           <XLabel>Document 1</XLabel>
@@ -820,7 +803,7 @@ export const DocTab: Story = {
           <XLabel>Document 2</XLabel>
         </XDocTab>
       </XDocTabs>
-    </Frame>
+    </section>
   ),
 };
 
@@ -828,8 +811,8 @@ export const DocTabs: Story = {
   name: "DocTabs",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XDocTabs size="small">
           <XDocTab selected>
             <XLabel>Document 1</XLabel>
@@ -854,8 +837,8 @@ export const DocTabs: Story = {
             <XLabel>Document 2</XLabel>
           </XDocTab>
         </XDocTabs>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -863,9 +846,9 @@ export const Drawer: Story = {
   name: "Drawer",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
-        <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
+        <div class="flex flex-wrap items-center gap-3">
           <XButton>
             <XLabel>Open</XLabel>
             <XDrawer />
@@ -882,7 +865,7 @@ export const Drawer: Story = {
             <XLabel>Open</XLabel>
             <XDrawer position="bottom" />
           </XButton>
-        </Row>
+        </div>
         <XButton>
           <XLabel>Open</XLabel>
           <XDrawer id="drawer" manual>
@@ -906,8 +889,8 @@ export const Drawer: Story = {
             }}
           />
         </XButton>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -915,14 +898,14 @@ export const Dialog: Story = {
   name: "Dialog",
   tags: ["visual"],
   render: () => (
-    <Frame>
+    <section class="grid items-start justify-items-start gap-[18px]">
       <XDialog open style={{ position: "static", margin: "0", width: "260px" }}>
         <XLabel>Dialog content</XLabel>
         <XButton>
           <XLabel>Close</XLabel>
         </XButton>
       </XDialog>
-    </Frame>
+    </section>
   ),
 };
 
@@ -930,8 +913,8 @@ export const Icon: Story = {
   name: "Icon",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XIcon href="#mail" />
         <XIcon href="/node_modules/xel/icons/material.svg#folder" />
         <XIcon href="https://xel-toolkit.org/icons/fluent.svg#lock" />
@@ -940,8 +923,8 @@ export const Icon: Story = {
           <XIcon href="#mail" />
           <XIcon href="#mail" size="large" />
         </XBox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -949,8 +932,8 @@ export const Input: Story = {
   name: "Input",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XInput />
         <XInput value="Sample text" />
         <XInput>
@@ -983,7 +966,7 @@ export const Input: Story = {
           <XIcon href="#search" />
           <XLabel>Search</XLabel>
         </XInput>
-        <Row>
+        <div class="flex flex-wrap items-center gap-3">
           <XInput size="small">
             <XIcon href="#search" />
             <XLabel>Small</XLabel>
@@ -996,9 +979,9 @@ export const Input: Story = {
             <XIcon href="#search" />
             <XLabel>Large</XLabel>
           </XInput>
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -1006,8 +989,8 @@ export const Label: Story = {
   name: "Label",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XLabel>Name</XLabel>
         <XLabel level="1">Level 1</XLabel>
         <XLabel level="2">Level 2</XLabel>
@@ -1022,8 +1005,8 @@ export const Label: Story = {
         <XCheckbox>
           <XLabel>Show tooltips</XLabel>
         </XCheckbox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1031,7 +1014,7 @@ export const Menu: Story = {
   name: "Menu",
   tags: ["visual"],
   render: () => (
-    <Frame>
+    <section class="grid items-start justify-items-start gap-[18px]">
       <XMenu opened>
         <XMenuItem>
           <XIcon href="#history-undo" />
@@ -1060,7 +1043,7 @@ export const Menu: Story = {
           <XShortcut value="Control+V" />
         </XMenuItem>
       </XMenu>
-    </Frame>
+    </section>
   ),
 };
 
@@ -1068,8 +1051,8 @@ export const Menubar: Story = {
   name: "Menubar",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XMenubar>
           <XMenuItem>
             <XLabel>File</XLabel>
@@ -1114,8 +1097,8 @@ export const Menubar: Story = {
             <XLabel>Help</XLabel>
           </XMenuItem>
         </XMenubar>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1123,8 +1106,8 @@ export const MenuItem: Story = {
   name: "MenuItem",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XMenu opened>
           <XMenuItem>
             <XLabel>Copy</XLabel>
@@ -1162,8 +1145,8 @@ export const MenuItem: Story = {
             <XLabel>Show Guides</XLabel>
           </XMenuItem>
         </XMenu>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1171,15 +1154,15 @@ export const Message: Story = {
   name: "Message",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XMessage href="#about" />
         <XMessage href="#slogan-1" />
         <XMessage href="#unread-emails" args="count:4, date:2024-05-01" />
         <XMessage href="#source-code" autocapitalize />
         <XMessage>Scoped message fallback</XMessage>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1187,8 +1170,8 @@ export const Nav: Story = {
   name: "Nav",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XNav>
           <XNavItem value="first" toggled>
             <XIcon href="#mail" />
@@ -1245,8 +1228,8 @@ export const Nav: Story = {
             </XNav>
           </XNavItem>
         </XNav>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1254,8 +1237,8 @@ export const NavItem: Story = {
   name: "NavItem",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XNav>
           <XNavItem>
             <XIcon href="#home" />
@@ -1303,8 +1286,8 @@ export const NavItem: Story = {
             </XNavItem>
           </a>
         </XNav>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1312,8 +1295,8 @@ export const Notification: Story = {
   name: "Notification",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XButton>
           <XLabel>Open notification</XLabel>
           <XNotification>
@@ -1332,8 +1315,8 @@ export const Notification: Story = {
         <XInput id="input">
           <XLabel>Enter text here</XLabel>
         </XInput>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1341,8 +1324,8 @@ export const NumberInput: Story = {
   name: "NumberInput",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XNumberInput value="0" />
         <XNumberInput value="0">
           <XStepper />
@@ -1378,8 +1361,8 @@ export const NumberInput: Story = {
           <XLabel>Large</XLabel>
           <XStepper />
         </XNumberInput>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1387,15 +1370,15 @@ export const Pager: Story = {
   name: "Pager",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XPager value="1" max="5" />
         <XPager value="1" max="5" controls="first last prev next nth" />
         <XPager value="2" max="5" controls="prev next" />
         <XPager max="200" />
         <XPager href="https://boxy-svg.com/ideas" />
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1403,8 +1386,8 @@ export const Popover: Story = {
   name: "Popover",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XButton>
           <XIcon href="#settings" />
           <XPopover modal>
@@ -1417,8 +1400,8 @@ export const Popover: Story = {
             <EditMenu />
           </XPopover>
         </XButton>
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1426,8 +1409,8 @@ export const Progressbar: Story = {
   name: "Progressbar",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <div class="xel-story-stack" style={{ width: "280px" }}>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid w-[280px] items-start justify-items-start gap-2.5">
         <XProgressbar />
         <XProgressbar value="0.5" />
         <XProgressbar value="50" max="100" />
@@ -1437,7 +1420,7 @@ export const Progressbar: Story = {
         <XProgressbar value="0.5" style={{ margin: "20px 0" }} />
         <XProgressbar value="0.5" size="large" />
       </div>
-    </Frame>
+    </section>
   ),
 };
 
@@ -1445,8 +1428,8 @@ export const Radio: Story = {
   name: "Radio",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XRadio />
         <XRadio toggled />
         <XRadio toggled mixed />
@@ -1463,13 +1446,13 @@ export const Radio: Story = {
             Description with a <a href="#">link</a>
           </XLabel>
         </XRadio>
-        <Row>
+        <div class="flex flex-wrap items-center gap-3">
           <XRadio size="small" />
           <XRadio />
           <XRadio size="large" />
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -1477,8 +1460,8 @@ export const Radios: Story = {
   name: "Radios",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XRadios>
           <XRadio toggled>
             <XLabel>First option</XLabel>
@@ -1501,8 +1484,8 @@ export const Radios: Story = {
             <XLabel>Disabled option</XLabel>
           </XRadio>
         </XRadios>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1510,8 +1493,8 @@ export const Select: Story = {
   name: "Select",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XSelect>
           <CountryMenu />
         </XSelect>
@@ -1591,7 +1574,7 @@ export const Select: Story = {
             </XMenuItem>
           </XMenu>
         </XSelect>
-        <Row>
+        <div class="flex flex-wrap items-center gap-3">
           <XSelect size="small">
             <XMenu>
               <XMenuItem value="one" toggled>
@@ -1622,9 +1605,9 @@ export const Select: Story = {
               </XMenuItem>
             </XMenu>
           </XSelect>
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -1632,12 +1615,12 @@ export const Shortcut: Story = {
   name: "Shortcut",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XShortcut value="Control+C" />
         <XShortcut value="Control+Alt+Shift+P" />
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1645,8 +1628,8 @@ export const Slider: Story = {
   name: "Slider",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XSlider value="10" />
         <XSlider value="10" min="-50" max="50" />
         <XSlider value="10" step="10" />
@@ -1663,8 +1646,8 @@ export const Slider: Story = {
             <XStepper />
           </XNumberInput>
         </XBox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1672,14 +1655,14 @@ export const Stepper: Story = {
   name: "Stepper",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XStepper />
         <XStepper disabled />
         <XStepper disabled="increment" style={{ margin: "5px 0" }} />
         <XStepper disabled="decrement" />
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1687,8 +1670,8 @@ export const Swatch: Story = {
   name: "Swatch",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XSwatch />
         <XSwatch value="#bada55" />
         <XSwatch value="color(display-p3 1 0 0)" />
@@ -1698,8 +1681,8 @@ export const Swatch: Story = {
           <XSwatch value="#bada55" />
           <XSwatch value="#bada55" size="large" />
         </XBox>
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1707,8 +1690,8 @@ export const Switch: Story = {
   name: "Switch",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XSwitch />
         <XSwitch toggled />
         <XSwitch mixed />
@@ -1726,13 +1709,13 @@ export const Switch: Story = {
             Description with a <a href="#">link</a>
           </XLabel>
         </XSwitch>
-        <Row>
+        <div class="flex flex-wrap items-center gap-3">
           <XSwitch size="small" />
           <XSwitch />
           <XSwitch size="large" />
-        </Row>
-      </Stack>
-    </Frame>
+        </div>
+      </div>
+    </section>
   ),
 };
 
@@ -1740,7 +1723,7 @@ export const Tab: Story = {
   name: "Tab",
   tags: ["visual"],
   render: () => (
-    <Frame>
+    <section class="grid items-start justify-items-start gap-[18px]">
       <XTabs>
         <XTab toggled>
           <XIcon href="#mail" />
@@ -1751,7 +1734,7 @@ export const Tab: Story = {
           <XLabel>Item two</XLabel>
         </XTab>
       </XTabs>
-    </Frame>
+    </section>
   ),
 };
 
@@ -1759,8 +1742,8 @@ export const Tabs: Story = {
   name: "Tabs",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XTabs>
           <XTab toggled>
             <XIcon href="#mail" />
@@ -1794,8 +1777,8 @@ export const Tabs: Story = {
             <XLabel>Item two</XLabel>
           </XTab>
         </XTabs>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1803,8 +1786,8 @@ export const Tag: Story = {
   name: "Tag",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XTag>
           <XLabel>Tag</XLabel>
         </XTag>
@@ -1837,8 +1820,8 @@ export const Tag: Story = {
         <XTag value="blue" style={{ color: "white", border: "none", background: "#3168c6" }}>
           <XLabel>Blue</XLabel>
         </XTag>
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1846,8 +1829,8 @@ export const Tags: Story = {
   name: "Tags",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XTags>
           <XTag value="tag-1">
             <XLabel>Tag 1</XLabel>
@@ -1901,8 +1884,8 @@ export const Tags: Story = {
             <XLabel>Windows</XLabel>
           </XTag>
         </XTags>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1910,8 +1893,8 @@ export const TagsInput: Story = {
   name: "TagsInput",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XTagsInput>
           <XTag value="tag-1">
             <XLabel>Tag 1</XLabel>
@@ -1974,8 +1957,8 @@ export const TagsInput: Story = {
           <XTag value="tag-1"><XLabel>Tag 1</XLabel></XTag>
           <XTag value="tag-2"><XLabel>Tag 2</XLabel></XTag>
         </XTagsInput>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -1983,8 +1966,8 @@ export const TextEditor: Story = {
   name: "TextEditor",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XTextEditor />
         <XTextEditor value="Sample text" />
         <XTextEditor>
@@ -1995,8 +1978,8 @@ export const TextEditor: Story = {
         <XTextEditor required>
           <XLabel>Last name</XLabel>
         </XTextEditor>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -2004,16 +1987,16 @@ export const Throbber: Story = {
   name: "Throbber",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
         <XThrobber />
         <XBox style={{ gap: "10px" }}>
           <XThrobber size="small" />
           <XThrobber />
           <XThrobber size="large" />
         </XBox>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -2021,40 +2004,40 @@ export const Titlebar: Story = {
   name: "Titlebar",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Stack>
-        <div class="xel-story-titlebar-window">
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="grid items-start justify-items-start gap-2.5">
+        <div class="w-[420px] overflow-hidden rounded-lg border border-[color-mix(in_srgb,CanvasText_18%,transparent)]">
           <XTitlebar>
             <XLabel>About</XLabel>
           </XTitlebar>
-          <div class="xel-story-titlebar-window-content">Window content</div>
+          <div class="min-h-[120px] p-4">Window content</div>
         </div>
-        <div class="xel-story-titlebar-window">
+        <div class="w-[420px] overflow-hidden rounded-lg border border-[color-mix(in_srgb,CanvasText_18%,transparent)]">
           <XTitlebar>
             <XBox>
               <XIcon href="#document" />
               <XLabel>Untilted.svg</XLabel>
             </XBox>
           </XTitlebar>
-          <div class="xel-story-titlebar-window-content">Window content</div>
+          <div class="min-h-[120px] p-4">Window content</div>
         </div>
-        <div class="xel-story-titlebar-window">
+        <div class="w-[420px] overflow-hidden rounded-lg border border-[color-mix(in_srgb,CanvasText_18%,transparent)]">
           <XTitlebar maximized>
             <XLabel>About</XLabel>
           </XTitlebar>
-          <div class="xel-story-titlebar-window-content">Maximized state</div>
+          <div class="min-h-[120px] p-4">Maximized state</div>
         </div>
-        <div class="xel-story-titlebar-window">
+        <div class="w-[420px] overflow-hidden rounded-lg border border-[color-mix(in_srgb,CanvasText_18%,transparent)]">
           <XTitlebar maximized>
             <XBox>
               <XIcon href="#document" />
               <XLabel>Untilted.svg</XLabel>
             </XBox>
           </XTitlebar>
-          <div class="xel-story-titlebar-window-content">Maximized state</div>
+          <div class="min-h-[120px] p-4">Maximized state</div>
         </div>
-      </Stack>
-    </Frame>
+      </div>
+    </section>
   ),
 };
 
@@ -2062,8 +2045,8 @@ export const Tooltip: Story = {
   name: "Tooltip",
   tags: ["visual"],
   render: () => (
-    <Frame>
-      <Row>
+    <section class="grid items-start justify-items-start gap-[18px]">
+      <div class="flex flex-wrap items-center gap-3">
         <XButton>
           <XIcon href="#refresh" />
           <XTooltip href="#about">Refresh</XTooltip>
@@ -2100,7 +2083,7 @@ export const Tooltip: Story = {
             Refresh
           </XTooltip>
         </XButton>
-      </Row>
-    </Frame>
+      </div>
+    </section>
   ),
 };
