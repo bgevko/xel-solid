@@ -19,16 +19,28 @@ export const xelIconSets = [
   "material-outlined",
 ] as const;
 
-export const xelLocales = [] as const;
+export const xelLocales = ["en", "pl"] as const;
+
+export const xelAccentColors = [
+  "blue",
+  "purple",
+  "pink",
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "gray",
+] as const;
 
 export type XelTheme = (typeof xelThemes)[number];
 export type XelIconSet = (typeof xelIconSets)[number];
-export type XelLocale = (typeof xelLocales)[number] | string;
+export type XelLocale = (typeof xelLocales)[number];
+export type XelAccentColor = (typeof xelAccentColors)[number];
 
 export type XelSetupOptions = {
-  theme?: XelTheme | string | null;
-  accentColor?: string | null;
-  icons?: readonly (XelIconSet | string)[] | null;
+  theme?: XelTheme | null;
+  accentColor?: XelAccentColor | null;
+  icons?: readonly XelIconSet[] | null;
   locales?: readonly XelLocale[] | null;
   assetBaseUrl?: string;
 };
@@ -44,35 +56,29 @@ function joinAssetUrl(baseUrl: string, path: string) {
   return `${baseUrl.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
 }
 
-export function resolveXelThemeUrl(theme: XelTheme | string, assetBaseUrl = "/xel") {
-  if (theme.endsWith(".css") || theme.includes("/")) {
-    return theme;
-  }
-
+export function resolveXelThemeUrl(theme: XelTheme, assetBaseUrl = "/xel") {
   return joinAssetUrl(assetBaseUrl, `themes/${theme}.css`);
 }
 
-export function resolveXelIconUrl(iconSet: XelIconSet | string, assetBaseUrl = "/xel") {
-  if (iconSet.endsWith(".svg") || iconSet.includes("/")) {
-    return iconSet;
-  }
-
+export function resolveXelIconUrl(iconSet: XelIconSet, assetBaseUrl = "/xel") {
   return joinAssetUrl(assetBaseUrl, `icons/${iconSet}.svg`);
 }
 
 export function resolveXelLocaleUrl(locale: XelLocale, assetBaseUrl = "/xel") {
-  if (locale.endsWith(".ftl") || locale.includes("/")) {
-    return locale;
-  }
-
   return joinAssetUrl(assetBaseUrl, `locales/${locale}.ftl`);
 }
 
 export function setupXel(options: XelSetupOptions = {}): XelSetupResult {
   const assetBaseUrl = options.assetBaseUrl ?? "/xel";
-  const themeUrl = options.theme ? resolveXelThemeUrl(options.theme, assetBaseUrl) : null;
-  const iconUrls = (options.icons ?? []).map((iconSet) => resolveXelIconUrl(iconSet, assetBaseUrl));
-  const localeUrls = (options.locales ?? []).map((locale) => resolveXelLocaleUrl(locale, assetBaseUrl));
+  const themeUrl = options.theme
+    ? resolveXelThemeUrl(options.theme, assetBaseUrl)
+    : null;
+  const iconUrls = (options.icons ?? []).map((iconSet) =>
+    resolveXelIconUrl(iconSet, assetBaseUrl),
+  );
+  const localeUrls = (options.locales ?? []).map((locale) =>
+    resolveXelLocaleUrl(locale, assetBaseUrl),
+  );
 
   if (themeUrl !== null) {
     Xel.theme = themeUrl;

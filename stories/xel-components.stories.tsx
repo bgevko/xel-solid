@@ -712,7 +712,7 @@ export const ColorPicker: Story = {
       <Row>
         <XColorPicker value="#bada55" />
         <XColorPicker value="#bada55" alpha />
-        <XColorPicker value="#bada55" size="small" />
+        <XColorPicker value="#bada55" />
       </Row>
     </Frame>
   ),

@@ -42,6 +42,7 @@ const attributePropNames = [
   "args",
   "autocapitalize",
   "controls",
+  "dragging",
   "href",
   "icon",
   "id",
@@ -54,11 +55,14 @@ const attributePropNames = [
   "prefix",
   "size",
   "skin",
+  "space",
+  "spaces",
   "step",
   "suffix",
   "timeout",
   "tracking",
   "type",
+  "validation",
   "value",
 ] as const;
 
@@ -84,6 +88,8 @@ function assignAttributes<TElement extends HTMLElement>(
 
     if (value === false || value === null || value === undefined) {
       element.removeAttribute(propName);
+    } else if (Array.isArray(value)) {
+      element.setAttribute(propName, value.join(" "));
     } else {
       element.setAttribute(propName, String(value));
     }
@@ -110,13 +116,14 @@ function assignBooleanAttributes<TElement extends HTMLElement>(
 export function createXelComponent<TElement extends HTMLElement>(
   localName: string,
 ) {
-  return function XelComponent(
-    props: XelComponentProps<TElement>,
-  ): JSX.Element {
+  return function XelComponent(props: object): JSX.Element {
     let element: TElement | undefined;
+    const componentProps = props as XelComponentProps<TElement> &
+      Partial<Record<(typeof attributePropNames)[number], unknown>> &
+      Partial<Record<(typeof booleanPropNames)[number], unknown>>;
     const [local, eventProps, booleanProps, attributeProps, others] =
       splitProps(
-        props,
+        componentProps,
         ["children", "prop", "properties", "ref"],
         eventPropNames,
         booleanPropNames,

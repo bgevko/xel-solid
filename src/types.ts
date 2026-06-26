@@ -50,6 +50,36 @@ import type {
 
 export type Booleanish = boolean | "" | undefined | null;
 
+export type XelSize = "small" | "large";
+export type XButtonSkin = "normal" | "flat" | "recessed" | "dock";
+export type XDrawerPosition = "left" | "right" | "top" | "bottom";
+export type XInputType = "text" | "email" | "password" | "url" | "color";
+export type XInputValidation = "auto" | "instant" | "manual";
+export type XTooltipType = "hint" | "error";
+export type XColorSpace =
+  | "srgb"
+  | "srgb-linear"
+  | "p3"
+  | "rec2020"
+  | "a98rgb"
+  | "prophoto"
+  | "oklch"
+  | "oklab"
+  | "lch"
+  | "lab"
+  | "xyz-d65"
+  | "xyz-d50";
+export type XSliderDragging = "start" | "end";
+export type XStepperDisabled = Booleanish | "increment" | "decrement";
+export type XPagerControl = "prev" | "next" | "first" | "last" | "nth";
+export type XPagerControls =
+  | readonly XPagerControl[]
+  | XPagerControl
+  | `${XPagerControl} ${XPagerControl}`
+  | `${XPagerControl} ${XPagerControl} ${XPagerControl}`
+  | `${XPagerControl} ${XPagerControl} ${XPagerControl} ${XPagerControl}`
+  | `${XPagerControl} ${XPagerControl} ${XPagerControl} ${XPagerControl} ${XPagerControl}`;
+
 export type XelCustomEvent<TDetail = unknown> = CustomEvent<TDetail>;
 
 export type XelEventHandler<
@@ -101,7 +131,7 @@ export type XelBooleanProps = {
   checked?: Booleanish;
   compact?: Booleanish;
   condensed?: Booleanish;
-  disabled?: Booleanish | string;
+  disabled?: Booleanish;
   ellipsis?: Booleanish;
   expanded?: Booleanish;
   expandable?: Booleanish;
@@ -127,7 +157,6 @@ export type XelBooleanProps = {
 export type XelCommonProps = {
   args?: string;
   autocapitalize?: string | Booleanish;
-  controls?: string;
   href?: string;
   icon?: string;
   id?: string;
@@ -136,15 +165,11 @@ export type XelCommonProps = {
   maxlength?: number | string;
   min?: number | string;
   minlength?: number | string;
-  position?: string;
   prefix?: string;
-  size?: string;
-  skin?: string;
   step?: number | string;
   suffix?: string;
   timeout?: number | string;
   tracking?: number | string;
-  type?: string;
   value?: string | number | null;
 };
 
@@ -164,6 +189,19 @@ export type XelComponentProps<TElement extends HTMLElement = HTMLElement> =
     XelPropertyProps<TElement> & {
       children?: JSX.Element;
     };
+
+type XelComponentPropsWith<
+  TElement extends HTMLElement,
+  TProps extends object,
+> = Omit<XelComponentProps<TElement>, keyof TProps> & TProps;
+
+type XelSizedProps = {
+  size?: XelSize | null;
+};
+
+type XelSpacesProps = {
+  spaces?: readonly string[] | string | null;
+};
 
 export type XelEventDetailMap = {
   add: HTMLElement;
@@ -298,57 +336,85 @@ export type XelComponentElementMap = {
   XTooltip: XTooltipElement;
 };
 
-export type XAccordionProps = XelComponentProps<
-  XelComponentElementMap["XAccordion"]
+export type XAccordionProps = XelComponentPropsWith<
+  XelComponentElementMap["XAccordion"],
+  XelSizedProps
 >;
-export type XAvatarProps = XelComponentProps<XelComponentElementMap["XAvatar"]>;
+export type XAvatarProps = XelComponentPropsWith<
+  XelComponentElementMap["XAvatar"],
+  XelSizedProps
+>;
 export type XBackdropProps = XelComponentProps<
   XelComponentElementMap["XBackdrop"]
 >;
 export type XBoxProps = XelComponentProps<XelComponentElementMap["XBox"]>;
 export type XButtonType = "button" | "submit" | "reset";
-export type XButtonProps = Omit<
-  XelComponentProps<XelComponentElementMap["XButton"]>,
-  "type"
-> & {
-  type?: XButtonType;
-};
+export type XButtonProps = XelComponentPropsWith<
+  XelComponentElementMap["XButton"],
+  XelSizedProps & {
+    skin?: XButtonSkin;
+    type?: XButtonType;
+  }
+>;
 export type XButtonsProps = XelComponentProps<
   XelComponentElementMap["XButtons"]
 >;
 export type XCardProps = XelComponentProps<XelComponentElementMap["XCard"]>;
-export type XCheckboxProps = XelComponentProps<
-  XelComponentElementMap["XCheckbox"]
+export type XCheckboxProps = XelComponentPropsWith<
+  XelComponentElementMap["XCheckbox"],
+  XelSizedProps
 >;
-export type XColorInputProps = XelComponentProps<
-  XelComponentElementMap["XColorInput"]
+export type XColorInputProps = XelComponentPropsWith<
+  XelComponentElementMap["XColorInput"],
+  XelSizedProps & {
+    space?: XColorSpace;
+  }
 >;
-export type XColorPickerProps = XelComponentProps<
-  XelComponentElementMap["XColorPicker"]
+export type XColorPickerProps = XelComponentPropsWith<
+  XelComponentElementMap["XColorPicker"],
+  XelSpacesProps
 >;
-export type XColorSelectProps = XelComponentProps<
-  XelComponentElementMap["XColorSelect"]
+export type XColorSelectProps = XelComponentPropsWith<
+  XelComponentElementMap["XColorSelect"],
+  XelSizedProps & XelSpacesProps
 >;
 export type XContextMenuProps = XelComponentProps<
   XelComponentElementMap["XContextMenu"]
 >;
 export type XDocTabProps = XelComponentProps<XelComponentElementMap["XDocTab"]>;
-export type XDocTabsProps = XelComponentProps<
-  XelComponentElementMap["XDocTabs"]
+export type XDocTabsProps = XelComponentPropsWith<
+  XelComponentElementMap["XDocTabs"],
+  XelSizedProps
 >;
-export type XDrawerProps = XelComponentProps<XelComponentElementMap["XDrawer"]>;
+export type XDrawerProps = XelComponentPropsWith<
+  XelComponentElementMap["XDrawer"],
+  {
+    position?: XDrawerPosition;
+  }
+>;
 export type XDialogProps = JSX.DialogHtmlAttributes<HTMLDialogElement> & {
   ref?: HTMLDialogElement | ((element: HTMLDialogElement) => void);
 };
-export type XIconProps = XelComponentProps<XelComponentElementMap["XIcon"]>;
-export type XInputProps = XelComponentProps<XelComponentElementMap["XInput"]>;
+export type XIconProps = XelComponentPropsWith<
+  XelComponentElementMap["XIcon"],
+  XelSizedProps
+>;
+export type XInputProps = XelComponentPropsWith<
+  XelComponentElementMap["XInput"],
+  XelSizedProps & {
+    type?: XInputType;
+    validation?: XInputValidation;
+  }
+>;
 export type XLabelProps = XelComponentProps<XelComponentElementMap["XLabel"]>;
 export type XMenuProps = XelComponentProps<XelComponentElementMap["XMenu"]>;
-export type XMenubarProps = XelComponentProps<
-  XelComponentElementMap["XMenubar"]
+export type XMenubarProps = XelComponentPropsWith<
+  XelComponentElementMap["XMenubar"],
+  XelSizedProps
 >;
-export type XMenuItemProps = XelComponentProps<
-  XelComponentElementMap["XMenuItem"]
+export type XMenuItemProps = XelComponentPropsWith<
+  XelComponentElementMap["XMenuItem"],
+  XelSizedProps
 >;
 export type XMessageProps = XelComponentProps<
   XelComponentElementMap["XMessage"]
@@ -357,47 +423,89 @@ export type XNavProps = XelComponentProps<XelComponentElementMap["XNav"]>;
 export type XNavItemProps = XelComponentProps<
   XelComponentElementMap["XNavItem"]
 >;
-export type XNotificationProps = XelComponentProps<
-  XelComponentElementMap["XNotification"]
+export type XNotificationProps = XelComponentPropsWith<
+  XelComponentElementMap["XNotification"],
+  XelSizedProps
 >;
-export type XNumberInputProps = XelComponentProps<
-  XelComponentElementMap["XNumberInput"]
+export type XNumberInputProps = XelComponentPropsWith<
+  XelComponentElementMap["XNumberInput"],
+  XelSizedProps
 >;
-export type XPagerProps = XelComponentProps<XelComponentElementMap["XPager"]>;
+export type XPagerProps = XelComponentPropsWith<
+  XelComponentElementMap["XPager"],
+  {
+    controls?: XPagerControls | null;
+  }
+>;
 export type XPopoverProps = XelComponentProps<
   XelComponentElementMap["XPopover"]
 >;
-export type XProgressbarProps = XelComponentProps<
-  XelComponentElementMap["XProgressbar"]
+export type XProgressbarProps = XelComponentPropsWith<
+  XelComponentElementMap["XProgressbar"],
+  XelSizedProps
 >;
-export type XRadioProps = XelComponentProps<XelComponentElementMap["XRadio"]>;
+export type XRadioProps = XelComponentPropsWith<
+  XelComponentElementMap["XRadio"],
+  XelSizedProps
+>;
 export type XRadiosProps = XelComponentProps<XelComponentElementMap["XRadios"]>;
-export type XSelectProps = XelComponentProps<XelComponentElementMap["XSelect"]>;
+export type XSelectProps = XelComponentPropsWith<
+  XelComponentElementMap["XSelect"],
+  XelSizedProps
+>;
 export type XShortcutProps = XelComponentProps<
   XelComponentElementMap["XShortcut"]
 >;
-export type XSliderProps = XelComponentProps<XelComponentElementMap["XSlider"]>;
-export type XStepperProps = XelComponentProps<
-  XelComponentElementMap["XStepper"]
+export type XSliderProps = XelComponentPropsWith<
+  XelComponentElementMap["XSlider"],
+  XelSizedProps & {
+    dragging?: XSliderDragging | null;
+  }
 >;
-export type XSwatchProps = XelComponentProps<XelComponentElementMap["XSwatch"]>;
-export type XSwitchProps = XelComponentProps<XelComponentElementMap["XSwitch"]>;
-export type XTabProps = XelComponentProps<XelComponentElementMap["XTab"]>;
+export type XStepperProps = XelComponentPropsWith<
+  XelComponentElementMap["XStepper"],
+  {
+    disabled?: XStepperDisabled;
+  }
+>;
+export type XSwatchProps = XelComponentPropsWith<
+  XelComponentElementMap["XSwatch"],
+  XelSizedProps
+>;
+export type XSwitchProps = XelComponentPropsWith<
+  XelComponentElementMap["XSwitch"],
+  XelSizedProps
+>;
+export type XTabProps = XelComponentPropsWith<
+  XelComponentElementMap["XTab"],
+  XelSizedProps
+>;
 export type XTabsProps = XelComponentProps<XelComponentElementMap["XTabs"]>;
-export type XTagProps = XelComponentProps<XelComponentElementMap["XTag"]>;
+export type XTagProps = XelComponentPropsWith<
+  XelComponentElementMap["XTag"],
+  XelSizedProps
+>;
 export type XTagsProps = XelComponentProps<XelComponentElementMap["XTags"]>;
-export type XTagsInputProps = XelComponentProps<
-  XelComponentElementMap["XTagsInput"]
+export type XTagsInputProps = XelComponentPropsWith<
+  XelComponentElementMap["XTagsInput"],
+  XelSizedProps
 >;
-export type XTextEditorProps = XelComponentProps<
-  XelComponentElementMap["XTextEditor"]
+export type XTextEditorProps = XelComponentPropsWith<
+  XelComponentElementMap["XTextEditor"],
+  XelSizedProps & {
+    validation?: XInputValidation;
+  }
 >;
-export type XThrobberProps = XelComponentProps<
-  XelComponentElementMap["XThrobber"]
+export type XThrobberProps = XelComponentPropsWith<
+  XelComponentElementMap["XThrobber"],
+  XelSizedProps
 >;
 export type XTitlebarProps = XelComponentProps<
   XelComponentElementMap["XTitlebar"]
 >;
-export type XTooltipProps = XelComponentProps<
-  XelComponentElementMap["XTooltip"]
+export type XTooltipProps = XelComponentPropsWith<
+  XelComponentElementMap["XTooltip"],
+  {
+    type?: XTooltipType;
+  }
 >;
